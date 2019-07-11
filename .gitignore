@@ -1,0 +1,12 @@
+
+# compiled module
+__pycache__
+
+# txt files
+*.txt
+
+# sundries
+.DS_Store
+origin/
+q.py
+test.py
