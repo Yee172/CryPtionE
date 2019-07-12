@@ -1,14 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import os
 import sys
+
+
 __all__ = ['key_generator', 'encrypt', 'decrypt']
+__author__ = 'Yee_172'
+__date__ = '2019/07/12'
 
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-
-PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PUBLIC_KEY_PATH = PATH + '/public_key.pem'
-PRIVATES_KEY_PATH = PATH + '/private_key.pem'
-RSA_CONTROL = 2048
-SECTION = 200
-SPLITER = b'|--|'

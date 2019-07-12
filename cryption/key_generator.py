@@ -1,10 +1,20 @@
-from __init__ import RSA_CONTROL, PUBLIC_KEY_PATH, PRIVATES_KEY_PATH
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+from header import RSA_CONTROL
+from header import PUBLIC_KEY_PATH
+from header import PRIVATES_KEY_PATH
 from Crypto.PublicKey import RSA
 
 
-key = RSA.generate(RSA_CONTROL)
-with open(PUBLIC_KEY_PATH, 'wb') as f:
-    f.write(key.publickey().exportKey('PEM'))
+__all__ = ['generate']
+__author__ = 'Yee_172'
+__date__ = '2019/07/12'
 
-with open(PRIVATES_KEY_PATH, 'wb') as f:
-    f.write(key.exportKey('PEM'))
+
+def generate():
+    key = RSA.generate(RSA_CONTROL)
+    with open(PUBLIC_KEY_PATH, 'wb') as f:
+        f.write(key.publickey().exportKey('PEM'))
+
+    with open(PRIVATES_KEY_PATH, 'wb') as f:
+        f.write(key.exportKey('PEM'))
