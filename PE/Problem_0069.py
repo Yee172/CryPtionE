@@ -1,0 +1,7 @@
+# Find the value of n \leq 1000000 for which
+# n / \varphi(n) is a maximum.
+# ----------------------------------------------------
+# Analysis: brute force
+#           Obviously, it is better for n to have more distinct factors
+
+914c8cbe76b0721445669c44414122bb1c270c5e7922ffda619bd97014b3ede84d4be83efaff8a343ff25f18f11d4091bec9798faad33bd959c3092832ef24396ac746ac1b75a983476884b135490e1d3e90249a5c0f4fae2c78c0ce43b40444197843f60473d864c3d7f13ae206abe186fe59191a09c2d92f51a4d4f447cd7b969e14b73e00bce19808f92e729734336df886f10494eb832e899ee3e06ebbcd1954b916f1a1bbafbfea05bba5f4f159bf9c2acc2a787b1f1f13cb55e558a1e06600c72bbcad66320c8e233b68002d289802c09dcc6075c4d3c17b094814e0455efa9f406a1fe9faa453a911175592055d8697c1f968d03232d5155fc62190e8

@@ -1,0 +1,11 @@
+# A number chain is created by continuously adding the
+# square of the digits in a number to form a new number
+# until it has been seen before.
+# What is most amazing is that EVERY starting number
+# will eventually arrive at 1 or 89.
+# How many starting numbers below ten million will
+# arrive at 89?
+# ----------------------------------------------------
+# Analysis: brute force
+
+0afc4e16df616a389ffa6bc8b820891795114ccf419216ba495fc5c5d1d59f7190e61f57f6b3adf93f77da17652b98e3ce93c1e5243e4e9b3fde10db9b5e2e45b66ae8539cf0ebfca2ffd8c1a500dac108ee162fa6923fc187ba2405c1e989c124ea0bf906b33cf52bfd2683881ea8175a113dbe330390bb24d695d9f34207d57c21634b40bbc264e4d3a88e5e04b3e0c71f13ddda0a3bb840566a100a09e8516f5de987396da5af89ce4b91c05224ac74a5703c181401aa22801dfab471814c4bd0ced7bcd8bf81a339ebabf4094cc25d1b45e9d4ac050a9dcdedb64e068b9bad37a00c19cbed248fce9c1c0852916f438feef525429539574bff2601e0b82f7c2d2d7c624420f97dd0fe362fe7b1c541b4c46e1242752e7c1b1e707b5d02e7e0f21c378dd486e3f0aed4224790086e05db07efd9f846f88cb1e13f16e7102688201fbd6db8bb12b8594cab29cfb4ca9a7e566c3ef32dc6ed387e5e860398ee2dc282aa4aa84471e28b81c0c91d3ef1684d8575c600fa45ba7e750d704bddec06a5e8658dc922f02ad22cab546f5fdafe960d8739409cfcc99322d37850012ba33fb54830945bd148e89cd13610bf80c601f0d38abaa362219e3dd5bd8e3a4046c56354d99415310ee7d02c94990c824f39cd5076a23f027ff6e9713439e6a3e7cdec5118253ae1241c8c9aab13f19ef3c9a2d40cd8a057cd91e9a2ce3db454cfdfb4b7

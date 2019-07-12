@@ -1,0 +1,7 @@
+# Find the difference between the sum of the squares
+# of the first one hundred natural numbers and
+# the square of the sum.
+# ----------------------------------------------------
+# Analysis: brute force
+
+1980bad764b0ee569d5f4ce5cc1b4b12e85c088bd5cf9eacd2e13d39460dc0af7b4c3b9602387146b9ba2a4a474a3660ea795934a235a4fa49dc73c9aed3eda970238384df8032f2724037bb4ba0b2fc015ad8c34d7368ccd18a5c389870c7de3a2aa8dbd305de2795a403338b70358f75ded28f9692a207512a746e28fcd19e6947d6f8fc7e98179ce21ec23313565e35a2c2a0e4b927321dd925c1c84c33acebca88ed84c62e457e8c23803c84894d07b26389110b6f500fe97b6ba41999959c00bb20962fa084a22623911c8db1d609190ecdb1c18fa27467778ca61397530e53830f2b7fd4f950c08d9b72fbc8f2e6fa77fc6c3766d143991906b824cc4a

@@ -1,0 +1,9 @@
+# A row measuring seven units in length has red blocks
+# with a minimum length of three units placed on it,
+# such that any two red blocks (which are allowed to be
+# different lengths) are separated by at least one grey square.
+# How many ways can a row measuring fifty units in length be filled?
+# ----------------------------------------------------
+# Analysis: dynamic programming
+
+562e7ffa5097b4764e07544ddad93c73c19d00b04f8a0c9666ee65d45e1835c483b1fafef89dfa1ba67658e98af7a591cf7e0fc1cab4d8c475f707ee262eec7e4931532bdbcb1e26ad93dc15a92610d97785a5b2c2fec87791840578c7ce9dcbcbb350f0cedb86e98bb8d7e126132d8feb3a859ae2d9f47a0cec823ced723e3df3a02f52d6e28b526da2e0e42dce250b01c2302479f43e67f898fd0e713747375a28b3c8ea81e7cf7522877892cc30498a3612bfcd039493509b2df414c1932528d29383677f53d2f919c34a1e84c291397214e108841ba7b0b7b3701a442305866e86365bebeda0ad4937bf077ff4a72f9da2a693c7ccea87fabcf3d70e46c77c2d2d7c09390afd413fc46f9016126fda900aa555f4070d99a59c9da5e553969891acef9cd58cf7ba4f38ac9aa6f4eb82cfac2f4381f38706df1468aa1b8e1d2ca3479ac47002fe418e0ca2f3a0cdcb69873afcbcc0b422a607f2476b4fb62143b5ad33184c3c4e49c3fb6e53faa6dc87ad5d0c2ec973b19ddb57a23300be0c2ed949c660635cbc39bcf1d9231f49d0aab795b557a933f88ea42f74e532ccf761118aac39404923d8d824b1f4a8bcf7d1f88607a1a9b7b70d41c4a0b7f025c0ed5cedce133f7d22877f34298d1b85fc8343c2eb0986a41215f7ec466a5cbe8fc31282869d20444fb93c1593ca87efda0db8fca06544231b6944c0105b119ac79e9f93bc

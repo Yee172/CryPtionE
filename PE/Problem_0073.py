@@ -1,0 +1,6 @@
+# How many fractions lie between 1 / 3 and 1 / 2 in the
+# sorted set of reduced proper fractions for d \leq 12,000?
+# ----------------------------------------------------
+# Analysis: brute force
+
+6eecb4c3e72975eee988eb2d7cb639f7a35a71e5bf66a2f483aa78694e907be9e5752692d996263c5c2d599fbf08f90092b45ede0c5461f936fe3a1203f5bb8e5bcd4dfeb34de644e7d6dfef62fd1065900d4a44152880cf2005ae7327efdcb9d9706ad9774187eeade9827ffde24ef4bef3246b66d1106ca04089c70c656ca78460b9a1ed048ce9e59147c40c4329ab36cdab96061e03fe2045c5a8ddc3f11545d572f8a55825acdf7edb602ac66e44bdcd81239a800e3605126cb3406a9638736ecda83b2c040ade1fe0846cdce57d5cc6678e0d3b89c885cd213dd72cc2907f2f747f43f5b113859a30a3c133e32c57733b1eca00b710b31723cbde38361b

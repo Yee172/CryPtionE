@@ -1,0 +1,36 @@
+# A hexagonal tile with number 1 is surrounded by a ring
+# of six hexagonal tiles, starting at "12 o'clock" and
+# numbering the tiles 2 to 7 in an anti-clockwise direction.
+# New rings are added in the same fashion, with the next
+# rings being numbered 8 to 19, 20 to 37, 38 to 61, and so on.
+# The diagram below shows the first two rings.
+#        8
+#     9    19
+# 10     2    18
+#     3     7
+# 11     1    17
+#     4     6
+# 12     5    16
+#    13    15
+#       14
+# By finding the difference between tile n and each of
+# its six neighbours we shall define PD(n) to be
+# the number of those differences which are prime.
+# It can be shown that the maximum value of PD(n) is 3.
+# If all of the tiles for which PD(n) = 3 are listed in
+# ascending order to form a sequence, the 10th tile would be 271.
+# Find the 2000th tile in this sequence.
+# ----------------------------------------------------
+# Analysis: brute force
+#           Notice that the tile not at the place of the lower bound or upper bound of a ring would be impossible to achieve PD(n) = 3.
+#           If the tile is not at the place of the lower bound or upper bound of a ring,
+#              if the tile is not at the corner, then there would be two 1s and the difference at inner ring and outer ring would both be 1, then we get PD(n) \leq 2.
+#              if the tile is at the corner, then there would be two 1s,
+#                 when the tile is in first ring, we can enumerate it, which shows that PD(n) \leq 2,
+#                 when the tile is out of first ring, we can see
+#                    its neighbour at inner ring and the neighbour at outer ring in one line share the same parity
+#                    and the other two neighbour at outer ring share the same parity,
+#                 which implies that PD(n) \leq 2.
+#           Then we can just enumerate the lower bound and upper bound to get the result.
+
+5d9e2e88992a04e8b658a149d1c1d97b1f850ffb3beed2a783d01262ac3e06c52a21b7cf9b8759801ae40932584b511acfcf8dec64142bc7ff2db6b11bde638ab82e52166fee6b044d246be8306c27575005dba480240896c086a96f408158491b4c4d1ce1d279e93fa1ed3ea43f8e6b168395d7316dac77a028098b95a914e0d1346ea31df17cbabb2e8a7f2fb09b671952bec32f7e38b318406dafced3310d474d7f2889369495ebd129418341568f650039b53bce5d11cd7c19acd6929f5bc6dd2bae62344a3a1f898458bc19115e3851178388a9461b2ebf17728ca61d43f8e04e82581728565bbdd115096849cd5abff4fae4b225fcf17cad8326e2fa4c7c2d2d7c670f78d10b78a32cc1e0cf0cbf9867f4a12befc3391ae02a47598eefc19415d5440f884bd893e94feb2e67d7ea3a898e32302868219a1cef85d22fa7364394a13a51670bfa1cccdbb31e88e9704ad7754a1c18a41538587f7c1d51a29d429dd7f26e07b68c4ab78cd77dab21263b303668fa42a209c72efc7976dc6f2cbdccd53fea22ec22ba8704115f414db99d94bed5d4a5ed65490df5d435797a7b07ee6925869c74b790e75974908efa6139697383a1e2bc0455026d5e266669162c3adcf2a0e91d3580ad83c1d2216b4d0a7deb1e77da7dad166b7f8f81ea104fec46fe135db94dcebbabe68b97c0239e69a61449e7462eb91bf1fe59c9022f0fd8dfa97c2d2d7cab947851fea6e2a671484e27f23b1b931805b1feac9dd65a1bda44dd547ac37bd08ffd1cfeb667b20eb52d76fcdf4f72895bcee885f7e2169bc3c3926d313b35ade5484a2f1d53ac2758609db33f718ba098706943b8a37a5f7d3f0703d2dac6175e23b15dd6eae523bdcd81d4f7a2f25dcfd24523566dcdb4b405943903c4908e5686c170a955b6d83afd2731c2d593f382810f6de8a6ce0332d281972aa2da7218f8802aab8029c6982d634409c2d9cb3301bf53ea21a37081788ca2824014e964bfc0e4f5299321db9afae039166221ff15e74473a53e1b3765b01254563ae30305f2fc544b5016dca8376906c9858e961d85b0a4d5dbc9986d2fadcbe2357c2d2d7c458cc1b6b9a07224233f0208943b2975f19fee7948b21cdbb44d377238b7061c84984c014c249573a319c52bb8f494086ae21d4e0683b116c61254b0affbb10a5232efe2cbc09bcb51f1ddc1ce3a8c1108ecb35903aae3cb271bc55eff19026513e474ed60cef5cc5ac71363739f03fff0d419f7120eb4cc66679f33ee3adaa8ec7b4a71701ec2368be1f1578f0ac7daea350ad50c8233e3601abcf1d252920df8a9bff52ab07da46a3b721e8491ccd14dabaadcc2544c832c1af24cb97a90554c9289df0b0127477dad11c88912fa64d707829dc2870c44db5a1419e9bf49f73420abf419fd1c0df298960f69c3643312eb6f611c0877338f89b549123387f17c2d2d7c69b60546ba11668fb4b5c6f9f4f8b03d32c1e12e14a4aa95eb5a6e36a7c66c6a426515e56cc65e928f2cb3bab7d72933f195494b83cc6244555900e358e135ca6730c2dbb1432ce60053344ef0345157b85fa7a4bd99f5c5f2dd8a9bc54f1f1822a422385e5adcb72152075c8ce8d63ffd08ec908d991070b313a8f7dfd6faa937de408f1989525d689fdbd7c1c558b2b328620bde7118dbed9dffb2f8d13a8a7db20eb8eba2267c6dc09ba6f30ed2482758be500f4ff94fbb65053855d168cf67eb49c96258c735314f2ad2f63b2b82ab03b9b259f9d0a5114cd0abe7a4d3dea1299e180729230ba11accde1c0486dbd1f76baf5e8e93a20433f3c1318d57087c2d2d7c04cbbae0bfd0f3dc9f66b06a3b03dcd3b40421cb4e1b567e407f91897369f4750d443f8925dd17f603a5c60d564c75062da3a6c8d6f1720242a3c6c6222860bfc45cb166d46ca1f731509688929414df511b7c41ec66dca8cabfee169d1a043050931e60efd975e96ea9a11cc6f39c83ed0c27b2d43c4378f23ab3065073ac23b11a57a37d0cb1617c0c431faf0141c14ed9daee95a3ef479e5492c71973bbc364c245f582cf8b23286ddd50b4ece68e0f173c234c680fbf403d2aa0966b0c4f5dfdbeaee6a9baf8274062a161dfd2891d1eb2d52f4cfcedce60916d0abadac6506872ce10578f3640e86be8794c06ad3a53cebd505cfcfa9433a7e1cdb49c7d7c2d2d7c66effbe3f0ed374e9050f90dd391fdfe03aabeac4c51cf82d4d0839c1b45f0e0f660b8cc36f76e26c6a00ae121fefc45da046eb4203b5b71725c836b83da842888ec2af924798dc854c6e34e80c6e365c5aaf3f5846f666b0627eb9d9c1543028d728098c387967e1a1ea42de33dd46840b3e7e5ef46dacc65da18f0d89db274df21e7e77f4ffe20df9b5fbdd1267b53538574ae9b26a6255e52398d3c16b82d1693e5a9f83ae07affaff9511fe0b99139fa6cf84975b0468cf01535116da887652f4afc1f5977d8a14bb0ab501e3f9b52d14d9408c7350c9fe8c429e899ad2344bd300c2e1a0fd876910678000b7c0a3027c60854f71adbaaa4dc251ef287a07c2d2d7ca5a6564253dfc1e4a327fae7b9dcf324e0f6f02c60f07d9ac3624ce8c484cfb79eb28d1a25526bf791733c146b33ce07c0226e2b07f5ede6e9a9df8cca60a700017b0a89d90910330f3ad452c1478e319e1a44bf809b8f4b27e8b1a8d8bdf6d586593dca172ae605ae080b09eb808a0ba8ce956f08ba8bd6723eb7050484e9877ebf16ae372a1e3d83f2ad7ae451f1ea980591fac9d1d71ee235c39f630b5434471fd63900501ace8bee13d711f3e63196bf8779657c2a4ce2242c113d29a4b27dd58f20fb6d5f30e7713dc4d337af23b0802e6651697a62e3af3caf0a002d2c6abcbbc58416b20be08d47f2d68883abc9eb69004bfa91a4491003fc8cadd6327c2d2d7ca8a5216f57bf4d91ec744b1b031d9dc074c99bc8c274a3df4494c7a5623d38bb041b6680404b03caefc0c0b1482d61d8b7d3eb8829f575870a7bdc8460e025ce3af097795f40c5777cf98962827db3d4452989e9da19125945569a396d68300803d1c14979463a41202b59d1570f851f8652cb9728830269b00d2b4bd85c26f9bbeec8f4fccd3d82f2206716a897de17fb78ab4dd3cc590ca1400f287153c24a82da3e31dcabe3a0f4dda2d2f6f747f29a6a55b5c97808b942a444aa20ae42304d5af0af9ee63e1bd45ef12c6f59c450db19379217521743bf5a7c5a95c72e8381559f5028c40fa7634ee7a81b4a080aaa3c5b6053a802e5ecf7f7d292ff58f4
