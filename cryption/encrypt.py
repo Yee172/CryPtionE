@@ -4,6 +4,7 @@ from header import PUBLIC_KEY_PATH
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
 from header import SECTION
+from header import BLOCK
 from header import SPLITER
 from header import solution_spliter
 from Crypto.PublicKey import RSA
@@ -27,6 +28,10 @@ def encrypt(message, encoding='utf-8'):
     return SPLITER.join(map(encryptor.encrypt, [message[i * SECTION:(i + 1) * SECTION] for i in range((len(message) - 1) // SECTION + 1)]))
 
 
+def beautify(context):
+    return '\n'.join(context[i * BLOCK:(i + 1) * BLOCK] for i in range((len(context) - 1) // BLOCK + 1))
+
+
 def encryPtE(all_message_in_file):
     '''encryPtE
     
@@ -39,7 +44,7 @@ def encryPtE(all_message_in_file):
         str -- mixed ciphertext
     '''
     head, body = solution_spliter(all_message_in_file)
-    return head + encrypt(body).hex() + '\n'
+    return head + beautify(encrypt(body).hex()) + '\n'
 
 
 def encryPtE_for_solution(solution_file_name):

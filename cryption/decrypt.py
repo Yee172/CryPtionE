@@ -22,6 +22,10 @@ def decrypt(ciphertext):
     return b''.join(map(decryptor.decrypt, ciphertext.split(SPLITER)))
 
 
+def reverse_beautify(context):
+    return ''.join(context.split('\n'))
+
+
 def decryPtE(mixed_ciphertext):
     '''decryPtE
     
@@ -34,7 +38,7 @@ def decryPtE(mixed_ciphertext):
         str -- message hidden in the ciphertext
     '''
     head, body = solution_spliter(mixed_ciphertext)
-    body = bytes.fromhex(body[:-1])
+    body = bytes.fromhex(reverse_beautify(body))
     return head + decrypt(body).decode()
 
 
