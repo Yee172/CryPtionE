@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from header import RSA_CONTROL
 from header import PUBLIC_KEY_PATH
-from header import PRIVATES_KEY_PATH
+from header import PRIVATE_KEY_PATH
 from Crypto.PublicKey import RSA
 
 
@@ -16,5 +16,5 @@ def generate():
     with open(PUBLIC_KEY_PATH, 'wb') as f:
         f.write(key.publickey().exportKey('PEM'))
 
-    with open(PRIVATES_KEY_PATH, 'wb') as f:
+    with open(PRIVATE_KEY_PATH, 'wb') as f:
         f.write(key.exportKey('PEM'))

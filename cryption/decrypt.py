@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from header import PRIVATES_KEY_PATH
+from header import PRIVATE_KEY_PATH
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
 from header import SPLITER
@@ -14,7 +14,7 @@ __author__ = 'Yee_172'
 __date__ = '2019/07/12'
 
 
-with open(PRIVATES_KEY_PATH, 'rb') as f:
+with open(PRIVATE_KEY_PATH, 'rb') as f:
     decryptor = PKCS1_OAEP.new(RSA.importKey(f.read()))
 
 

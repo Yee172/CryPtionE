@@ -9,7 +9,7 @@ __date__ = '2019/07/12'
 
 PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PUBLIC_KEY_PATH = PATH + '/public_key.pem'
-PRIVATES_KEY_PATH = PATH + '/private_key.pem'
+PRIVATE_KEY_PATH = PATH + '/private_key.pem'
 PE_PATH = PATH + '/PE'
 PE_ORIGIN_PATH = PE_PATH + '/origin'
 SOLUTION_FILE_HEADER = '/Problem_'
