@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from header import ENCODING
 from header import PRIVATE_KEY_PATH
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
@@ -26,7 +27,7 @@ def reverse_beautify(context):
     return ''.join(context.split('\n'))
 
 
-def decryPtE(mixed_ciphertext):
+def decryPtE(mixed_ciphertext, encoding=ENCODING):
     '''decryPtE
     
     decrytion in special way
@@ -39,14 +40,14 @@ def decryPtE(mixed_ciphertext):
     '''
     head, body = solution_spliter(mixed_ciphertext)
     body = bytes.fromhex(reverse_beautify(body))
-    return head + decrypt(body).decode()
+    return head + decrypt(body).decode(encoding=encoding)
 
 
-def decryPtE_for_solution(solution_file_name):
+def decryPtE_for_solution(solution_file_name, encoding=ENCODING):
     try:
-        with open(PE_PATH + solution_file_name, 'r') as f:
+        with open(PE_PATH + solution_file_name, 'r', encoding=encoding) as f:
             encrypted_solution = f.read()
     except:
         raise Exception
-    with open(PE_ORIGIN_PATH + solution_file_name, 'w') as f:
-        f.write(decryPtE(encrypted_solution))
+    with open(PE_ORIGIN_PATH + solution_file_name, 'w', encoding=encoding) as f:
+        f.write(decryPtE(encrypted_solution, encoding=encoding))

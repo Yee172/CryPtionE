@@ -7,6 +7,9 @@ from header import SHOW_LENGTH
 from key_generator import generate
 from encrypt import encryPtE_for_solution
 from decrypt import decryPtE_for_solution
+from sign import sign_for_single_solution
+from sign import sign_for_all_solutions
+from verify import verify_for_single_solution
 import os
 
 
@@ -38,6 +41,15 @@ def success_shower(info):
     print('\033[0m')
 
 
+def get_solution_file_name():
+    n = input('Input the index of problem: ')
+    try:
+        n = int(n)
+    except:
+        error_shower('Invalid input!')
+    return SOLUTION_FILE_HEADER + ('%04d' % n) + '.py'
+
+
 if __name__ == '__main__':
     hyphen_shower('Welcome to CryPtionE')
     print()
@@ -46,23 +58,21 @@ if __name__ == '__main__':
     print('[3] Encrypt all solutions')
     print('[4] Decrypt single solution')
     print('[5] Decrypt all solutions')
-    n = input('Input a number to choose [1 - 5]: ')
+    print('[6] Sign single solution')
+    print('[7] Sign all solutions')
+    print('[8] Verify single solution')
+    n = input('Input a number to choose [1 - 8]: ')
     try:
         n = int(n)
     except:
         error_shower('Invalid input!')
-    if not 0 < n < 6:
+    if not 0 < n < 9:
         error_shower('Input not in the range!')
     if n == 1:
         generate()
         success_shower('A new pair of key created')
     if n == 2:
-        n = input('Input the index of problem: ')
-        try:
-            n = int(n)
-        except:
-            error_shower('Invalid input!')
-        solution_file_name = SOLUTION_FILE_HEADER + ('%04d' % n) + '.py'
+        solution_file_name = get_solution_file_name()
         try:
             encryPtE_for_solution(solution_file_name)
         except:
@@ -76,12 +86,7 @@ if __name__ == '__main__':
                 encryPtE_for_solution(solution_file_name)
         success_shower('all solutions have been encrypted')
     if n == 4:
-        n = input('Input the index of problem: ')
-        try:
-            n = int(n)
-        except:
-            error_shower('Invalid input!')
-        solution_file_name = SOLUTION_FILE_HEADER + ('%04d' % n) + '.py'
+        solution_file_name = get_solution_file_name()
         try:
             decryPtE_for_solution(solution_file_name)
         except:
@@ -94,3 +99,20 @@ if __name__ == '__main__':
                 solution_file_name = file_name
                 decryPtE_for_solution(solution_file_name)
         success_shower('all solutions have been decrypted')
+    if n == 6:
+        solution_file_name = get_solution_file_name()
+        sign_for_single_solution(solution_file_name)
+        success_shower(solution_file_name[1:] + ' has been signed')
+    if n == 7:
+        sign_for_all_solutions()
+        success_shower('all solutions have been signed')
+    if n == 8:
+        solution_file_name = get_solution_file_name()
+        result = verify_for_single_solution(solution_file_name)
+        if isinstance(result, str):
+            error_shower(result)
+        else:
+            if result:
+                success_shower(solution_file_name[1:] + ' is valid')
+            else:
+                error_shower(solution_file_name[1:] + ' is invalid')

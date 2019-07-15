@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from header import ENCODING
 from header import PUBLIC_KEY_PATH
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
@@ -7,6 +8,7 @@ from header import SECTION
 from header import BLOCK
 from header import SPLITER
 from header import solution_spliter
+from sign import sign
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
@@ -20,11 +22,11 @@ with open(PUBLIC_KEY_PATH, 'rb') as f:
     encryptor = PKCS1_OAEP.new(RSA.importKey(f.read()))
 
 
-def encrypt(message, encoding='utf-8'):
-    if isinstance(message, str):
+def encrypt(message, encoding=ENCODING):
+    if not isinstance(message, bytes):
+        if not isinstance(message, str):
+            message = str(message)
         message = bytes(message, encoding=encoding)
-    elif not isinstance(message, bytes):
-        message = bytes(str(message), encoding=encoding)
     return SPLITER.join(map(encryptor.encrypt, [message[i * SECTION:(i + 1) * SECTION] for i in range((len(message) - 1) // SECTION + 1)]))
 
 
@@ -32,7 +34,7 @@ def beautify(context):
     return '\n'.join(context[i * BLOCK:(i + 1) * BLOCK] for i in range((len(context) - 1) // BLOCK + 1))
 
 
-def encryPtE(all_message_in_file):
+def encryPtE(all_message_in_file, encoding=ENCODING):
     '''encryPtE
     
     encryption in special way
@@ -40,18 +42,21 @@ def encryPtE(all_message_in_file):
     Arguments:
         all_message_in_file {str} -- message needed to be encrypted
     
+    Keyword Arguments:
+        encoding {str} -- encoding (default: {header.ENCODING})
+    
     Returns:
         str -- mixed ciphertext
     '''
     head, body = solution_spliter(all_message_in_file)
-    return head + beautify(encrypt(body).hex()) + '\n'
+    return head + beautify(encrypt(body, encoding=encoding).hex()) + '\n'
 
 
-def encryPtE_for_solution(solution_file_name):
+def encryPtE_for_solution(solution_file_name, encoding=ENCODING):
     try:
-        with open(PE_ORIGIN_PATH + solution_file_name, 'r') as f:
+        with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
             solution = f.read()
     except:
         raise Exception
-    with open(PE_PATH + solution_file_name, 'w') as f:
-        f.write(encryPtE(solution))
+    with open(PE_PATH + solution_file_name, 'w', encoding=encoding) as f:
+        f.write(encryPtE(solution, encoding=encoding))
