@@ -10,6 +10,7 @@ from decrypt import decryPtE_for_solution
 from sign import sign_for_single_solution
 from sign import sign_for_all_solutions
 from verify import verify_for_single_solution
+from verify import verify_for_all_solutions
 import os
 
 
@@ -54,19 +55,20 @@ if __name__ == '__main__':
     hyphen_shower('Welcome to CryPtionE')
     print()
     print('[1] Generate a new pair of key')
-    print('[2] Encrypt single solution')
-    print('[3] Encrypt all solutions')
-    print('[4] Decrypt single solution')
-    print('[5] Decrypt all solutions')
-    print('[6] Sign single solution')
-    print('[7] Sign all solutions')
-    print('[8] Verify single solution')
-    n = input('Input a number to choose [1 - 8]: ')
+    print('[2] Encrypt  single  solution')
+    print('[3] Encrypt  all     solutions')
+    print('[4] Decrypt  single  solution')
+    print('[5] Decrypt  all     solutions')
+    print('[6] Sign     single  solution')
+    print('[7] Sign     all     solutions')
+    print('[8] Verify   single  solution')
+    print('[9] Verify   all     solutions')
+    n = input('Input a number to choose [1 - 9]: ')
     try:
         n = int(n)
     except:
         error_shower('Invalid input!')
-    if not 0 < n < 9:
+    if not 0 < n < 10:
         error_shower('Input not in the range!')
     if n == 1:
         generate()
@@ -112,7 +114,24 @@ if __name__ == '__main__':
         if isinstance(result, str):
             error_shower(result)
         else:
-            if result:
-                success_shower(solution_file_name[1:] + ' is valid')
-            else:
+            if not result:
                 error_shower(solution_file_name[1:] + ' is invalid')
+            success_shower(solution_file_name[1:] + ' is valid')
+    if n == 9:
+        result = verify_for_all_solutions()
+        if isinstance(result, str):
+            error_shower(result)
+        solution_without_signature, signature_without_solution, invalid_solution = result
+        if any(result):
+            need_to_show = []
+            if solution_without_signature:
+                need_to_show.append('Solution without signature:'.ljust(SHOW_LENGTH))
+                need_to_show += solution_without_signature
+            if signature_without_solution:
+                need_to_show.append('Signature without solution:'.ljust(SHOW_LENGTH))
+                need_to_show += signature_without_solution
+            if invalid_solution:
+                need_to_show.append('Invalid solution:'.ljust(SHOW_LENGTH))
+                need_to_show += invalid_solution
+            error_shower(need_to_show)
+        success_shower('all solutions are valid')

@@ -4,15 +4,17 @@ from header import ENCODING
 from header import PUBLIC_KEY_PATH
 from header import SIGNATURE_PATH
 from header import PE_ORIGIN_PATH
+from header import SOLUTION_FILE_HEADER
 from header import SIGNATURE_FILE_FAIL
 from header import SIGNATURE_CONTEXT_FAIL
 from header import SOLUTION_FILE_FAIL
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 from Crypto.Signature import pkcs1_15
+import os
 
 
-__all__ = ['verify_for_single_solution']
+__all__ = ['verify_for_single_solution', 'verify_for_all_solutions']
 __author__ = 'Yee_172'
 __date__ = '2019/07/14'
 
@@ -55,3 +57,41 @@ def verify_for_single_solution(solution_file_name, encoding=ENCODING):
     else:
         return SIGNATURE_CONTEXT_FAIL
     return verify(message, signature, encoding=encoding)
+
+
+def verify_for_all_solutions(encoding=ENCODING):
+    try:
+        with open(SIGNATURE_PATH, 'r', encoding=encoding) as f:
+            raw_signatures = f.read().strip().split('\n')[1:]
+    except:
+        return SIGNATURE_FILE_FAIL
+    solution_without_signature = []
+    signature_without_solution = []
+    invalid_solution = []
+    signature_index = 0
+    signature_file_name, signature = raw_signatures[signature_index].split(',')
+    signature_index += 1
+    for solution_file_name in sorted(['/' + each_file_name for each_file_name in os.listdir(PE_ORIGIN_PATH) if each_file_name.startswith(SOLUTION_FILE_HEADER[1:]) and each_file_name.endswith('.py')]):
+        if solution_file_name < signature_file_name:
+            solution_without_signature.append(solution_file_name)
+            continue
+        while signature_file_name < solution_file_name:
+            signature_without_solution.append(signature_file_name)
+            if signature_index < len(raw_signatures):
+                signature_file_name, signature = raw_signatures[signature_index].split(',')
+                signature_index += 1
+            else:
+                signature_file_name = SOLUTION_FILE_HEADER + '9999.py'
+                break
+        if signature_file_name != solution_file_name:
+            continue
+        with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
+            message = f.read()
+        if not verify(message, signature, encoding=ENCODING):
+            invalid_solution.append(solution_file_name)
+        if signature_index < len(raw_signatures):
+            signature_file_name, signature = raw_signatures[signature_index].split(',')
+            signature_index += 1
+        else:
+            signature_file_name = SOLUTION_FILE_HEADER + '9999.py'
+    return solution_without_signature, signature_without_solution, invalid_solution
