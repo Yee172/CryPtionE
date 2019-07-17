@@ -4,7 +4,7 @@ import os
 import sys
 
 
-__all__ = ['key_generator', 'encrypt', 'decrypt']
+__all__ = ['key_generator', 'encrypt', 'decrypt', 'sign', 'verify']
 __author__ = 'Yee_172'
 __date__ = '2019/07/12'
 

@@ -12,3 +12,4 @@ private_key.pem
 origin/
 q.py
 test.py
+q_test.sh
