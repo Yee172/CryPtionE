@@ -3,6 +3,7 @@
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
 from header import SOLUTION_FILE_HEADER
+from header import SHOW_LENGTH
 from header import hyphen_shower
 from header import error_shower
 from header import success_shower
