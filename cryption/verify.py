@@ -8,19 +8,15 @@ from header import SOLUTION_FILE_HEADER
 from header import SIGNATURE_FILE_FAIL
 from header import SIGNATURE_CONTEXT_FAIL
 from header import SOLUTION_FILE_FAIL
+from header import error_shower
+from header import verifier
 from Crypto.Hash import SHA256
-from Crypto.PublicKey import RSA
-from Crypto.Signature import pkcs1_15
 import os
 
 
 __all__ = ['verify_for_single_solution', 'verify_for_all_solutions']
 __author__ = 'Yee_172'
 __date__ = '2019/07/14'
-
-
-with open(PUBLIC_KEY_PATH, 'rb') as f:
-    verifier = pkcs1_15.new(RSA.importKey(f.read()))
 
 
 def verify(message, signature, encoding=ENCODING):
@@ -44,7 +40,7 @@ def verify_for_single_solution(solution_file_name, encoding=ENCODING):
     except:
         return SIGNATURE_FILE_FAIL
     try:
-        with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
+        with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'r', encoding=encoding) as f:
             message = f.read()
     except:
         return SOLUTION_FILE_FAIL
@@ -71,7 +67,7 @@ def verify_for_all_solutions(encoding=ENCODING):
     signature_index = 0
     signature_file_name, signature = raw_signatures[signature_index].split(',')
     signature_index += 1
-    for solution_file_name in sorted(['/' + each_file_name for each_file_name in os.listdir(PE_ORIGIN_PATH) if each_file_name.startswith(SOLUTION_FILE_HEADER[1:]) and each_file_name.endswith('.py')]):
+    for solution_file_name in sorted([each_file_name for each_file_name in os.listdir(PE_ORIGIN_PATH) if each_file_name.startswith(SOLUTION_FILE_HEADER) and each_file_name.endswith('.py')]):
         if solution_file_name < signature_file_name:
             solution_without_signature.append(solution_file_name)
             continue
@@ -85,7 +81,7 @@ def verify_for_all_solutions(encoding=ENCODING):
                 break
         if signature_file_name != solution_file_name:
             continue
-        with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
+        with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'r', encoding=encoding) as f:
             message = f.read()
         if not verify(message, signature, encoding=ENCODING):
             invalid_solution.append(solution_file_name)

@@ -8,18 +8,14 @@ from header import SECTION
 from header import BLOCK
 from header import SPLITER
 from header import solution_spliter
-from sign import sign
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
+from header import error_shower
+from header import encryptor
+import os
 
 
 __all__ = ['encryPtE_for_solution']
 __author__ = 'Yee_172'
 __date__ = '2019/07/12'
-
-
-with open(PUBLIC_KEY_PATH, 'rb') as f:
-    encryptor = PKCS1_OAEP.new(RSA.importKey(f.read()))
 
 
 def encrypt(message, encoding=ENCODING):
@@ -54,9 +50,9 @@ def encryPtE(all_message_in_file, encoding=ENCODING):
 
 def encryPtE_for_solution(solution_file_name, encoding=ENCODING):
     try:
-        with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
+        with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'r', encoding=encoding) as f:
             solution = f.read()
+        with open(os.path.join(PE_PATH, solution_file_name), 'w', encoding=encoding) as f:
+            f.write(encryPtE(solution, encoding=encoding))
     except:
         raise Exception
-    with open(PE_PATH + solution_file_name, 'w', encoding=encoding) as f:
-        f.write(encryPtE(solution, encoding=encoding))

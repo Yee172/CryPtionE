@@ -3,7 +3,13 @@
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
 from header import SOLUTION_FILE_HEADER
-from header import SHOW_LENGTH
+from header import hyphen_shower
+from header import error_shower
+from header import success_shower
+from header import encryptor
+from header import decryptor
+from header import signer
+from header import verifier
 from key_generator import generate
 from encrypt import encryPtE_for_solution
 from decrypt import decryPtE_for_solution
@@ -19,29 +25,6 @@ __author__ = 'Yee_172'
 __date__ = '2019/07/12'
 
 
-def hyphen_shower(info):
-    print('-' * SHOW_LENGTH)
-    if isinstance(info, str):
-        print(info.center(SHOW_LENGTH))
-    else:
-        for each_info in info:
-            print(each_info.center(SHOW_LENGTH))
-    print('-' * SHOW_LENGTH)
-
-
-def error_shower(info):
-    print('\033[31m')
-    hyphen_shower(info)
-    print('\033[0m')
-    exit()
-
-
-def success_shower(info):
-    print('\033[32m')
-    hyphen_shower(info)
-    print('\033[0m')
-
-
 def get_solution_file_name():
     n = input('Input the index of problem: ')
     try:
@@ -53,16 +36,26 @@ def get_solution_file_name():
 
 if __name__ == '__main__':
     hyphen_shower('Welcome to CryPtionE')
+    print('Only \033[32mgreen options\033[0m are available')
     print()
-    print('[1] Generate a new pair of key')
+
+    print('\033[32m[1] Generate a new pair of key\033[0m')
+
+    print('\033[32m' if encryptor else '\033[31m', end='')
     print('[2] Encrypt  single  solution')
-    print('[3] Encrypt  all     solutions')
+    print('[3] Encrypt  all     solutions\033[0m')
+
+    print('\033[32m' if decryptor else '\033[31m', end='')
     print('[4] Decrypt  single  solution')
-    print('[5] Decrypt  all     solutions')
+    print('[5] Decrypt  all     solutions\033[0m')
+
+    print('\033[32m' if signer else '\033[31m', end='')
     print('[6] Sign     single  solution')
-    print('[7] Sign     all     solutions')
+    print('[7] Sign     all     solutions\033[0m')
+
+    print('\033[32m' if verifier else '\033[31m', end='')
     print('[8] Verify   single  solution')
-    print('[9] Verify   all     solutions')
+    print('[9] Verify   all     solutions\033[0m')
     n = input('Input a number to choose [1 - 9]: ')
     try:
         n = int(n)
@@ -74,50 +67,66 @@ if __name__ == '__main__':
         generate()
         success_shower('A new pair of key created')
     if n == 2:
+        if not encryptor:
+            error_shower('Public key unavailable')
         solution_file_name = get_solution_file_name()
         try:
             encryPtE_for_solution(solution_file_name)
         except:
             error_shower('Solution not exist!')
-        success_shower(solution_file_name[1:] + ' has been encrypted')
+        sign_for_single_solution(solution_file_name)
+        success_shower(solution_file_name + ' has been encrypted')
     if n == 3:
+        if not encryptor:
+            error_shower('Public key unavailable')
         for file_name in os.listdir(PE_ORIGIN_PATH):
-            file_name = '/' + file_name
             if file_name.startswith(SOLUTION_FILE_HEADER) and file_name.endswith('.py'):
                 solution_file_name = file_name
                 encryPtE_for_solution(solution_file_name)
+        sign_for_all_solutions()
         success_shower('all solutions have been encrypted')
     if n == 4:
+        if not decryptor:
+            error_shower('Private key unavailable')
         solution_file_name = get_solution_file_name()
         try:
             decryPtE_for_solution(solution_file_name)
         except:
             error_shower('Solution not exist!')
-        success_shower(solution_file_name[1:] + ' has been decrypted')
+        success_shower(solution_file_name + ' has been decrypted')
     if n == 5:
+        if not decryptor:
+            error_shower('Private key unavailable')
         for file_name in os.listdir(PE_PATH):
-            file_name = '/' + file_name
             if file_name.startswith(SOLUTION_FILE_HEADER) and file_name.endswith('.py'):
                 solution_file_name = file_name
                 decryPtE_for_solution(solution_file_name)
         success_shower('all solutions have been decrypted')
     if n == 6:
+        if not signer:
+            error_shower('Private key unavailable')
         solution_file_name = get_solution_file_name()
         sign_for_single_solution(solution_file_name)
-        success_shower(solution_file_name[1:] + ' has been signed')
+        success_shower(solution_file_name + ' has been signed')
     if n == 7:
+        if not signer:
+            error_shower('Private key unavailable')
         sign_for_all_solutions()
         success_shower('all solutions have been signed')
     if n == 8:
+        if not verifier:
+            error_shower('Public key unavailable')
         solution_file_name = get_solution_file_name()
         result = verify_for_single_solution(solution_file_name)
         if isinstance(result, str):
             error_shower(result)
         else:
             if not result:
-                error_shower(solution_file_name[1:] + ' is invalid')
-            success_shower(solution_file_name[1:] + ' is valid')
+                error_shower(solution_file_name + ' is invalid')
+            success_shower(solution_file_name + ' is valid')
     if n == 9:
+        if not verifier:
+            error_shower('Public key unavailable')
         result = verify_for_all_solutions()
         if isinstance(result, str):
             error_shower(result)

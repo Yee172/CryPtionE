@@ -6,19 +6,15 @@ from header import SIGNATURE_PATH
 from header import PE_ORIGIN_PATH
 from header import SOLUTION_FILE_HEADER
 from header import signature_file_insurance
+from header import error_shower
+from header import signer
 from Crypto.Hash import SHA256
-from Crypto.PublicKey import RSA
-from Crypto.Signature import pkcs1_15
 import os
 
 
 __all__ = ['sign_for_single_solution', 'sign_for_all_solutions']
 __author__ = 'Yee_172'
 __date__ = '2019/07/14'
-
-
-with open(PRIVATE_KEY_PATH, 'rb') as f:
-    signer = pkcs1_15.new(RSA.importKey(f.read()))
 
 
 def sign(message, encoding=ENCODING):
@@ -30,12 +26,14 @@ def sign(message, encoding=ENCODING):
 
 
 def sign_for_single_solution(solution_file_name, encoding=ENCODING):
+    if not signer:
+        return
     signature_file_insurance()
     with open(SIGNATURE_PATH, 'r', encoding=encoding) as f:
         raw_signatures = f.read().strip().split('\n')
-    with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as f:
+    with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'r', encoding=encoding) as f:
         new_raw_signature = solution_file_name + ',' + sign(f.read(), encoding=encoding)
-    i = 0
+    i = -1
     for i, each_raw_signature in enumerate(raw_signatures[1:]):
         file_name, signature = each_raw_signature.split(',')
         if file_name > solution_file_name:
@@ -52,8 +50,10 @@ def sign_for_single_solution(solution_file_name, encoding=ENCODING):
 
 
 def sign_for_all_solutions(encoding=ENCODING):
+    if not signer:
+        return
     with open(SIGNATURE_PATH, 'w', encoding=encoding) as f:
         f.write('Filename,Signature\n')
-        for solution_file_name in sorted(['/' + each_file_name for each_file_name in os.listdir(PE_ORIGIN_PATH) if each_file_name.startswith(SOLUTION_FILE_HEADER[1:]) and each_file_name.endswith('.py')]):
-            with open(PE_ORIGIN_PATH + solution_file_name, 'r', encoding=encoding) as _f:
+        for solution_file_name in sorted([each_file_name for each_file_name in os.listdir(PE_ORIGIN_PATH) if each_file_name.startswith(SOLUTION_FILE_HEADER) and each_file_name.endswith('.py')]):
+            with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'r', encoding=encoding) as _f:
                 f.write(solution_file_name + ',' + sign(_f.read(), encoding=encoding) + '\n')

@@ -6,17 +6,14 @@ from header import PE_PATH
 from header import PE_ORIGIN_PATH
 from header import SPLITER
 from header import solution_spliter
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
+from header import error_shower
+from header import decryptor
+import os
 
 
 __all__ = ['decryPtE_for_solution']
 __author__ = 'Yee_172'
 __date__ = '2019/07/12'
-
-
-with open(PRIVATE_KEY_PATH, 'rb') as f:
-    decryptor = PKCS1_OAEP.new(RSA.importKey(f.read()))
 
 
 def decrypt(ciphertext):
@@ -45,9 +42,9 @@ def decryPtE(mixed_ciphertext, encoding=ENCODING):
 
 def decryPtE_for_solution(solution_file_name, encoding=ENCODING):
     try:
-        with open(PE_PATH + solution_file_name, 'r', encoding=encoding) as f:
+        with open(os.path.join(PE_PATH, solution_file_name), 'r', encoding=encoding) as f:
             encrypted_solution = f.read()
     except:
         raise Exception
-    with open(PE_ORIGIN_PATH + solution_file_name, 'w', encoding=encoding) as f:
+    with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'w', encoding=encoding) as f:
         f.write(decryPtE(encrypted_solution, encoding=encoding))
