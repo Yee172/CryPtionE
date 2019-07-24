@@ -1,0 +1,20 @@
+# The hyperexponentiation or tetration of a number a
+# by a positive integer b, denoted by a \uparrow \uparrow b,
+# is recursively defined by:
+#    a \uparrow \uparrow 1 = a,
+#    a \uparrow \uparrow (k + 1) = a^{(a \uparrow \uparrow k)}.
+# Find the last 8 digits of 1777 \uparrow \uparrow 1855.
+# ----------------------------------------------------
+# Analysis: Euler's totient theorem
+
+a04034f545a87c1add49fee3d318cbde91344de27e8020eb0a35dbf27d34d47ada23c01fa63c4e34652bcf76b96782f9e6a0
+fbad19a5aabf50056550665a188eaed3a5ef492bec90486d971f7912949bfd05c260b5621505e1f6dda08b728048b4abe513
+52964d60c19d7ff785491ee08e083365cf9da27af7f58a07c406934efebd5bdae47f0fc61c34240e39cd0ee6e5b3333bf9d7
+b4e51590d55dfbc24c5d7f958579c8e9dc5f1d65c20b9a31b3829066d91451cbea6e39ee14470a2200759b1be18e0c5a707c
+6dc71fd1bd1c9a7f617a0c7f796908f17414a29caa7d544887dbb70897e35020170dd386430d443666a13ef225f5cc493ca2
+62b221ddd7fe7c2d2d7c2b5f125e6057356910b013e9896259916228f1372b32046ba38f49ab9cff5a6458dee81a87a9ec13
+5b0cbbde988d19eaac88255c3cdf4852ec3e65bad154cd601223bc9beff1ef22380464a6087f494540c70897c11b52de0f78
+95fe23358f44a8df4e1dc6bf9631079d409b5fcd534deb3440eb507df1f876e4f7c3baadf0d48599cbb44b8d7983dffa6cc3
+1891308bf5992f3d0f57031aae4de8bfd06e681e34b80366f2d569a0740b7d5b89b82ffee768eadca09505944d10f0ea9b59
+bf0f48d48c1004abc95d9de920e76ce46717a7984d98debd17571e518aeae12579c82128fcb9a64c70ad156a1f8c04f9e4ea
+ef6e675568c1a24564d945d50459174b
