@@ -1,8 +1,13 @@
-def phi_sieve(MAXN=10 ** 7, only_phi=False, info=True):
+def phi_sieve(MAXN=10 ** 7, only_phi=False, info=True, **kwargs):
     """Return a list of prime and phi with index up to MAXN
     
     Sieve of Euler in normal way
     
+    Arguments:
+        **kwargs {[type]} -- [description]
+            function_phi {bool} -- this argument determines whether return the
+                                   phi function that can calculate up to MAXN ** 2
+
     Keyword Arguments:
         MAXN {int} -- upper bound (default: {10 ** 7})
         only_phi {bool} -- only return the list of phi or plus the list of prime (default: {False})
@@ -35,10 +40,29 @@ def phi_sieve(MAXN=10 ** 7, only_phi=False, info=True):
                 phi[i * x] = phi[i] * x
                 break
 
+    def function_phi(n):
+        if n < MAXN:
+            return phi[n]
+        result = n
+        for p in prime:
+            if p * p > n:
+                break
+            if not n % p:
+                result = result // p * (p - 1)
+                while not n % p:
+                    n //= p
+        if n > 1:
+            result = result // n * (n - 1)
+        return result
+
+    phi_return = phi
+    if kwargs.get('function_phi', False):
+        phi_return = function_phi
+
     if info:
         print('Prime number and phi generated successfully.')
 
     if only_phi:
-        return phi
+        return phi_return
     else:
-        return prime, phi
+        return prime, phi_return
