@@ -3,6 +3,7 @@
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Signature import pkcs1_15
+from Crypto.Hash import SHA256
 import os
 
 
@@ -62,37 +63,40 @@ def success_shower(info):
     print('\033[0m')
 
 
-encryptor = ''
-decryptor = ''
-signer = ''
-verifier = ''
-load_error = []
-if os.path.exists(PUBLIC_KEY_PATH):
-    try:
-        with open(PUBLIC_KEY_PATH, 'rb') as f:
-            public_key = RSA.importKey(f.read())
-            encryptor = PKCS1_OAEP.new(public_key)
-            verifier = pkcs1_15.new(public_key)
-    except:
-        load_error.append('Warning: Public key not valid'.ljust(SHOW_LENGTH))
-else:
-    load_error.append('Warning: Public key not found'.ljust(SHOW_LENGTH))
+def initialization():
+    encryptor = ''
+    decryptor = ''
+    signer = ''
+    verifier = ''
+    load_error = []
+    if os.path.exists(PUBLIC_KEY_PATH):
+        try:
+            with open(PUBLIC_KEY_PATH, 'rb') as f:
+                public_key = RSA.importKey(f.read())
+                encryptor = PKCS1_OAEP.new(public_key)
+                verifier = pkcs1_15.new(public_key)
+        except:
+            load_error.append('Warning: Public key not valid'.ljust(SHOW_LENGTH))
+    else:
+        load_error.append('Warning: Public key not found'.ljust(SHOW_LENGTH))
 
 
-if os.path.exists(PRIVATE_KEY_PATH):
-    try:
-        with open(PRIVATE_KEY_PATH, 'rb') as f:
-            private_key = RSA.importKey(f.read())
-            decryptor = PKCS1_OAEP.new(private_key)
-            signer = pkcs1_15.new(private_key)
-    except:
-        load_error.append('Warning: Private key not valid'.ljust(SHOW_LENGTH))
-else:
-    load_error.append('Warning: Private key not found'.ljust(SHOW_LENGTH))
+    if os.path.exists(PRIVATE_KEY_PATH):
+        try:
+            with open(PRIVATE_KEY_PATH, 'rb') as f:
+                private_key = RSA.importKey(f.read())
+                decryptor = PKCS1_OAEP.new(private_key)
+                signer = pkcs1_15.new(private_key)
+        except:
+            load_error.append('Warning: Private key not valid'.ljust(SHOW_LENGTH))
+    else:
+        load_error.append('Warning: Private key not found'.ljust(SHOW_LENGTH))
 
 
-if load_error:
-    error_shower(load_error, False)
+    if load_error:
+        error_shower(load_error, False)
+
+    return encryptor, decryptor, signer, verifier
 
 
 def solution_spliter(all_message_in_file):
@@ -111,3 +115,7 @@ def signature_file_insurance(encoding=ENCODING):
     if not os.path.exists(SIGNATURE_PATH):
         with open(SIGNATURE_PATH, 'w', encoding=encoding) as f:
             f.write('Filename,Signature\n')
+
+
+encryptor, decryptor, signer, verifier = initialization()
+

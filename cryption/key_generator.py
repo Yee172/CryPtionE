@@ -3,7 +3,7 @@
 from header import RSA_CONTROL
 from header import PUBLIC_KEY_PATH
 from header import PRIVATE_KEY_PATH
-from Crypto.PublicKey import RSA
+from header import RSA
 
 
 __all__ = ['generate']

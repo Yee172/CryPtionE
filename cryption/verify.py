@@ -10,8 +10,8 @@ from header import SIGNATURE_CONTEXT_FAIL
 from header import SOLUTION_FILE_FAIL
 from header import error_shower
 from header import verifier
-from Crypto.Hash import SHA256
-import os
+from header import SHA256
+from header import os
 
 
 __all__ = ['verify_for_single_solution', 'verify_for_all_solutions']

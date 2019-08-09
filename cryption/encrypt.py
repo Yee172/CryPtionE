@@ -10,7 +10,7 @@ from header import SPLITER
 from header import solution_spliter
 from header import error_shower
 from header import encryptor
-import os
+from header import os
 
 
 __all__ = ['encryPtE_for_solution']
@@ -54,5 +54,5 @@ def encryPtE_for_solution(solution_file_name, encoding=ENCODING):
             solution = f.read()
         with open(os.path.join(PE_PATH, solution_file_name), 'w', encoding=encoding) as f:
             f.write(encryPtE(solution, encoding=encoding))
-    except:
-        raise Exception
+    except Exception as exception:
+        raise Exception(exception.__class__.__name__)

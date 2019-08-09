@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from header import PE_PATH
 from header import PE_ORIGIN_PATH
@@ -11,6 +11,7 @@ from header import encryptor
 from header import decryptor
 from header import signer
 from header import verifier
+from header import initialization
 from key_generator import generate
 from encrypt import encryPtE_for_solution
 from decrypt import decryPtE_for_solution
@@ -18,7 +19,7 @@ from sign import sign_for_single_solution
 from sign import sign_for_all_solutions
 from verify import verify_for_single_solution
 from verify import verify_for_all_solutions
-import os
+from header import os
 
 
 __all__ = []
@@ -31,16 +32,16 @@ def get_solution_file_name():
     try:
         n = int(n)
     except:
-        error_shower('Invalid input!')
+        error_shower('Invalid input')
     return SOLUTION_FILE_HEADER + ('%04d' % n) + '.py'
 
 
 if __name__ == '__main__':
     hyphen_shower('Welcome to CryPtionE')
-    print('Only \033[32mgreen options\033[0m are available')
+    print('{} \033[32m{}\033[0m {}'.format('Only', 'green options', 'are available'))
     print()
 
-    print('\033[32m[1] Generate a new pair of key\033[0m')
+    print('\033[32m{}\033[0m'.format('[1] Generate a new pair of key'))
 
     print('\033[32m' if encryptor else '\033[31m', end='')
     print('[2] Encrypt  single  solution')
@@ -61,9 +62,9 @@ if __name__ == '__main__':
     try:
         n = int(n)
     except:
-        error_shower('Invalid input!')
+        error_shower('Invalid input')
     if not 0 < n < 10:
-        error_shower('Input not in the range!')
+        error_shower('Input not in the range')
     if n == 1:
         generate()
         success_shower('A new pair of key created')
@@ -73,8 +74,8 @@ if __name__ == '__main__':
         solution_file_name = get_solution_file_name()
         try:
             encryPtE_for_solution(solution_file_name)
-        except:
-            error_shower('Solution not exist!')
+        except Exception as exception:
+            error_shower(exception.args)
         sign_for_single_solution(solution_file_name)
         success_shower(solution_file_name + ' has been encrypted')
     if n == 3:
@@ -92,8 +93,8 @@ if __name__ == '__main__':
         solution_file_name = get_solution_file_name()
         try:
             decryPtE_for_solution(solution_file_name)
-        except:
-            error_shower('Solution not exist!')
+        except Exception as exception:
+            error_shower(exception.args)
         success_shower(solution_file_name + ' has been decrypted')
     if n == 5:
         if not decryptor:

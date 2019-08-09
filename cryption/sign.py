@@ -8,8 +8,8 @@ from header import SOLUTION_FILE_HEADER
 from header import signature_file_insurance
 from header import error_shower
 from header import signer
-from Crypto.Hash import SHA256
-import os
+from header import SHA256
+from header import os
 
 
 __all__ = ['sign_for_single_solution', 'sign_for_all_solutions']
