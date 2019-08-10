@@ -117,5 +117,12 @@ def signature_file_insurance(encoding=ENCODING):
             f.write('Filename,Signature\n')
 
 
+def global_path_insurance():
+    if not os.path.exists(PE_PATH):
+        os.makedirs(PE_PATH)
+    if not os.path.exists(PE_ORIGIN_PATH):
+        os.makedirs(PE_ORIGIN_PATH)
+
+
 encryptor, decryptor, signer, verifier = initialization()
 

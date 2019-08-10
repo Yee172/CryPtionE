@@ -12,6 +12,8 @@ from header import decryptor
 from header import signer
 from header import verifier
 from header import initialization
+from header import global_path_insurance
+from header import os
 from key_generator import generate
 from encrypt import encryPtE_for_solution
 from decrypt import decryPtE_for_solution
@@ -19,7 +21,6 @@ from sign import sign_for_single_solution
 from sign import sign_for_all_solutions
 from verify import verify_for_single_solution
 from verify import verify_for_all_solutions
-from header import os
 
 
 __all__ = []
@@ -37,7 +38,10 @@ def get_solution_file_name():
 
 
 if __name__ == '__main__':
+    global_path_insurance()
+
     hyphen_shower('Welcome to CryPtionE')
+
     print('{} \033[32m{}\033[0m {}'.format('Only', 'green options', 'are available'))
     print()
 

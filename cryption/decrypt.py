@@ -44,7 +44,7 @@ def decryPtE_for_solution(solution_file_name, encoding=ENCODING):
     try:
         with open(os.path.join(PE_PATH, solution_file_name), 'r', encoding=encoding) as f:
             encrypted_solution = f.read()
+        with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'w', encoding=encoding) as f:
+            f.write(decryPtE(encrypted_solution, encoding=encoding))
     except Exception as exception:
         raise Exception(exception.__class__.__name__)
-    with open(os.path.join(PE_ORIGIN_PATH, solution_file_name), 'w', encoding=encoding) as f:
-        f.write(decryPtE(encrypted_solution, encoding=encoding))
