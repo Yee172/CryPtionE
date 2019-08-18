@@ -18,11 +18,20 @@ class LinearRecursion:
     def __getitem__(self, item):
         return self.__get_value_by_index(item)
 
+    def get_range(self, minimum, maximum):
+        return self.__get_value_by_range(minimum, maximum)
+
     def get_recursion(self):
         if self.modulo:
             return self.__get_recursion_modulo()
         else:
             return self.__get_recursion_normal()
+
+    def round_recursion(self, round_to_digit=0):
+        if round_to_digit:
+            self.recursion = list(map(lambda x: round(x, round_to_digit), self.recursion))
+        else:
+            self.recursion = list(map(round, self.recursion))
 
     def __get_recursion_normal(self):
         last_fail_state = []
@@ -134,4 +143,31 @@ class LinearRecursion:
         result = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
         if self.modulo:
             result %= self.modulo
+        return result
+
+    def __get_value_by_range(self, minimum, maximum):
+        # [minimum, maximum)
+        result = [0] * (maximum - minimum)
+        if not len(self.recursion):
+            self.get_recursion()
+        length = len(self.recursion)
+        r, t = [0] * length, [0] * length
+        r[0] = 1
+        if length == 1:
+            t[0] = self.recursion[0]
+        else:
+            t[1] = 1
+        s = [x for x in t]
+        while minimum:
+            if minimum & 1:
+                r = self.__polymul(r, t)
+            t = self.__polymul(t, t)
+            minimum >>= 1
+        result[0] = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
+        for j in range(1, len(result)):
+            r = self.__polymul(r, s)
+            result[j] = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
+        if self.modulo:
+            for j in range(len(result)):
+                result[j] %= self.modulo
         return result
