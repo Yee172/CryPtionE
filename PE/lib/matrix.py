@@ -25,9 +25,15 @@ class Matrix:
                 matrix_destination[i][j] = matrix_source[i][j]
 
     def __init__(self, row_number, column_number=0, initial_value=0):
-        self.row_number = row_number
-        self.column_number = column_number if column_number else self.row_number
-        self.matrix = [[initial_value] * self.column_number for _ in range(self.row_number)]
+        if isinstance(row_number, int):
+            self.row_number = row_number
+            self.column_number = column_number if column_number else self.row_number
+            self.matrix = [[initial_value] * self.column_number for _ in range(self.row_number)]
+        else:
+            vector = row_number
+            self.row_number = len(vector)
+            self.column_number = 1
+            self.matrix = list(map(lambda x: [x], vector))
     
     def __getitem__(self, item):
         return self.matrix[item]
