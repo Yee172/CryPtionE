@@ -3,7 +3,8 @@
 # perimeter that does not exceed 10^{8}?
 # ----------------------------------------------------
 # Analysis: brute force
-#           Hint: http://www.geocities.ws/fredlb37/node9.html
+#           Hint: integral angle only can be 60, 90 and 120
+#                 http://www.geocities.ws/fredlb37/node9.html
 
 928293f0c26c357b65194fd7d24b349a122fa068e9adb34468738ac89f632b3a1a8693bc49ff8b8246dffb7ec682445f7689
 4edc159d1d037751c7be4a6c1786554dde35a5d98051e490bc2e4a3592daaeefa1413fec5a621c627048d36a9a9a571b68bf
