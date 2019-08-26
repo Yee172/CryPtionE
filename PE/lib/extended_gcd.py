@@ -1,3 +1,6 @@
+from decorator_lib import memorize
+
+
 def extended_gcd(a, b, d, x, y):
     """Extended gcd
     
@@ -18,6 +21,8 @@ def extended_gcd(a, b, d, x, y):
         extended_gcd(b, a % b, d, y, x)
         y[0] -= x[0] * (a // b)
 
+
+@memorize
 def inverse(n, modulo):
     """Inverse of n
     
