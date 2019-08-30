@@ -13,27 +13,43 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             raw_is_prime {bool} -- when only_prime is False, this argument determines whether
                                    return the raw is_prime list of the faster way (default: {False})
             function_is_prime {bool} -- when only_prime is False, this argument determines whether
-                                        return the prime test function that can test up to upper_bound ** 2
+                                        return the prime test function that can test up to
+                                        upper_bound ** 2 (default: {False})
+            with_minimum_factor {bool} -- when only_prime is False, this argument determines whether
+                                          return the minimum factor of each number under
+                                          upper_bound (default: {False})
             segment_prime_sieve {bool} -- this argument determines whether use segment prime sieve,
-                                          when this argument is True, raw_is_prime and function_is_prime would be ignored
-            lower_bound {int} -- when segment_prime_sieve is True, this argument is used to set the lower bound of segment prime sieve
+                                          when this argument is True, raw_is_prime and function_is_prime
+                                          and with_minimum_factor would be ignored (default: {False})
+            lower_bound {int} -- when segment_prime_sieve is True, this argument is used to set the
+                                 lower bound of segment prime sieve (default: {1})
     
     Keyword Arguments:
         upper_bound {int} -- upper bound (default: {10 ** 7})
-        only_prime {bool} -- whether only return prime or with the list of is_prime
+        only_prime {bool} -- whether only return prime or
+                             with [is_prime or check_is_prime or minimum_factor] ahead (default: {True})
+                             default True situation:
+                                 return is_prime and prime
         info {bool} -- need info or not (default: {True})
     
     Returns:
-        list -- a list of prime with index up to upper_bound
+        if only_prime:
+            list -- a list of prime with index up to upper_bound
+        else:
+            tuple -- [is_prime or check_is_prime or minimum_factor] and [a list of prime with index up to upper_bound]
     """
     raw_is_prime = kwargs.get('raw_is_prime', False)
     function_is_prime = kwargs.get('function_is_prime', False)
+    with_minimum_factor = kwargs.get('with_minimum_factor', False)
     segment_prime_sieve = kwargs.get('segment_prime_sieve', False)
+
     if segment_prime_sieve:
         if raw_is_prime:
             print('Warning: raw_is_prime would be ignored when using segment prime sieve')
         if function_is_prime:
             print('Warning: function_is_prime would be ignored when using segment prime sieve')
+        if function_is_prime:
+            print('Warning: with_minimum_factor would be ignored when using segment prime sieve')
         lower_bound = kwargs.get('lower_bound', 1)
         if not isinstance(lower_bound, int) or lower_bound < 1:
             raise Exception('Invalid lower bound for segment prime sieve')
@@ -77,48 +93,78 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         return prime
 
     else:
+        FLAG_BITARRAY = False
+
         if info:
             print('Sieving prime numbers below {}'.format(upper_bound))
 
-        try:
+        if with_minimum_factor:
             if info:
-                print('Trying using bitarray to accelerate the speed')
-
-            from bitarray import bitarray
-            is_prime = bitarray(upper_bound >> 1)
-            is_prime.setall(1)
-            is_prime[0] = 0
-            for i in range(1, int(upper_bound ** .5)):
-                if is_prime[i]:
-                    is_prime[2 * i ** 2 + 2 * i::2 * i + 1] = 0
-            prime = [2] + [i * 2 + 1 for i in is_prime.search(bitarray([1]))]
-
-            if not only_prime:
-                if function_is_prime:
-                    def naive_is_prime(n):
-                        return bool(n & 1 and is_prime[n >> 1]) or n == 2
-
-                elif not raw_is_prime:
-                    is_prime = [bool(i & 1 and is_prime[i >> 1]) for i in range(upper_bound)]
-                    is_prime[2] = True
-        except:
-            if info:
-                print('Something was wrong with bitarray, using the sieve of Euler in normal way')
+                print('Using the sieve of Euler in normal way')
 
             prime = []
             is_prime = [True] * upper_bound
+            minimum_factor = [1] * upper_bound
+            minimum_factor[0] = 0
             is_prime[0] = False
             is_prime[1] = False
             for i in range(2, upper_bound):
                 if is_prime[i]:
                     prime.append(i)
+                    minimum_factor[i] = i
                 for x in prime:
-                    if i * x >= upper_bound:
+                    y = i * x
+                    if y >= upper_bound:
                         break
-                    is_prime[i * x] = False
+                    is_prime[y] = False
+                    minimum_factor[y] = x
                     if not i % x:
                         break
 
+        else:
+            try:
+                if info:
+                    print('Trying using bitarray to accelerate the speed')
+
+                from bitarray import bitarray
+                is_prime = bitarray(upper_bound >> 1)
+                is_prime.setall(1)
+                is_prime[0] = 0
+                for i in range(1, int(upper_bound ** .5)):
+                    if is_prime[i]:
+                        is_prime[2 * i ** 2 + 2 * i::2 * i + 1] = 0
+                prime = [2] + [i * 2 + 1 for i in is_prime.search(bitarray([1]))]
+
+                if not only_prime:
+                    if function_is_prime:
+                        def naive_is_prime(n):
+                            return bool(n & 1 and is_prime[n >> 1]) or n == 2
+
+                    elif not raw_is_prime:
+                        is_prime = [bool(i & 1 and is_prime[i >> 1]) for i in range(upper_bound)]
+                        is_prime[2] = True
+
+                FLAG_BITARRAY = True
+
+            except:
+                if info:
+                    print('Something was wrong with bitarray, using the sieve of Euler in normal way')
+
+                prime = []
+                is_prime = [True] * upper_bound
+                is_prime[0] = False
+                is_prime[1] = False
+                for i in range(2, upper_bound):
+                    if is_prime[i]:
+                        prime.append(i)
+                    for x in prime:
+                        if i * x >= upper_bound:
+                            break
+                        is_prime[i * x] = False
+                        if not i % x:
+                            break
+
+        if not FLAG_BITARRAY:
             if not only_prime and function_is_prime:
                 def naive_is_prime(n):
                     return is_prime[n]
@@ -126,9 +172,8 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if info:
             print('Prime number below {} generated successfully'.format(upper_bound))
 
-        if only_prime:
-            return prime
-        else:
+        return_list = []
+        if not only_prime:
             if function_is_prime:
                 def check_is_prime(n):
                     if n < upper_bound:
@@ -139,7 +184,10 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                         if not n % p:
                             return False
                     return True
-
-                return check_is_prime, prime
+                return_list.append(check_is_prime)
+            elif with_minimum_factor:
+                return_list.append(minimum_factor)
             else:
-                return is_prime, prime
+                return_list.append(is_prime)
+        return_list.append(prime)
+        return tuple(return_list)
