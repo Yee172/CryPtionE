@@ -172,22 +172,24 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if info:
             print('Prime number below {} generated successfully'.format(upper_bound))
 
+        if only_prime:
+            return prime
+
         return_list = []
-        if not only_prime:
-            if function_is_prime:
-                def check_is_prime(n):
-                    if n < upper_bound:
-                        return naive_is_prime(n)
-                    for p in prime:
-                        if p * p > n:
-                            break
-                        if not n % p:
-                            return False
-                    return True
-                return_list.append(check_is_prime)
-            elif with_minimum_factor:
-                return_list.append(minimum_factor)
-            else:
-                return_list.append(is_prime)
+        if function_is_prime:
+            def check_is_prime(n):
+                if n < upper_bound:
+                    return naive_is_prime(n)
+                for p in prime:
+                    if p * p > n:
+                        break
+                    if not n % p:
+                        return False
+                return True
+            return_list.append(check_is_prime)
+        elif with_minimum_factor:
+            return_list.append(minimum_factor)
+        else:
+            return_list.append(is_prime)
         return_list.append(prime)
         return tuple(return_list)
