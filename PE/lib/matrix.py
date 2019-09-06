@@ -4,12 +4,12 @@ class Matrix:
     Matrix implements
     
     Variables:
-        MODULE {number} -- global module for matrix operations
+        MODULO {number} -- global modulo for matrix operations
         PURE_INTEGER {bool} -- indicator of whether the matrix only contains integers
         PRECISION {number} -- if the matrix contains decimals, then we need to set the precision
     """
 
-    MODULE = 0
+    MODULO = 0
     PURE_INTEGER = True
     PRECISION = 1e-8
 
@@ -72,8 +72,8 @@ class Matrix:
         for i in range(self.row_number):
             for j in range(self.column_number):
                 self[i][j] += another[i][j]
-        if Matrix.MODULE:
-            self %= Matrix.MODULE
+        if Matrix.MODULO:
+            self %= Matrix.MODULO
         return self
 
     def __add__(self, another):
@@ -86,8 +86,8 @@ class Matrix:
         for i in range(self.row_number):
             for j in range(self.column_number):
                 self[i][j] -= another[i][j]
-        if Matrix.MODULE:
-            self %= Matrix.MODULE
+        if Matrix.MODULO:
+            self %= Matrix.MODULO
         return self
 
     def __sub__(self, another):
@@ -110,8 +110,8 @@ class Matrix:
                     if Matrix.__sign(self[i][k]):
                         for j in range(another.column_number):
                             result[i][j] += self[i][k] * another[k][j]
-        if Matrix.MODULE:
-            result %= Matrix.MODULE
+        if Matrix.MODULO:
+            result %= Matrix.MODULO
         return result
 
     def __imul__(self, another):
@@ -140,6 +140,6 @@ class Matrix:
     def trace(self):
         assert(self.row_number == self.column_number)
         result = sum(self[i][i] for i in range(self.row_number))
-        if Matrix.MODULE:
-            result %= Matrix.MODULE
+        if Matrix.MODULO:
+            result %= Matrix.MODULO
         return result
