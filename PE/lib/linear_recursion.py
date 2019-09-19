@@ -16,10 +16,11 @@ class LinearRecursion:
         self.modulo = kwargs.get('modulo', 0)
 
     def __getitem__(self, item):
-        return self.__get_value_by_index(item)
-
-    def get_range(self, minimum, maximum):
-        return self.__get_value_by_range(minimum, maximum)
+        if isinstance(item, int):
+            return self.__get_value_by_index(item)
+        if isinstance(item, slice):
+            return self.__get_value_by_range(item.start, item.stop, item.step)
+        raise TypeError('list indices must be integers or slices, not {}'.format(item.__class__.__name__))
 
     def get_recursion(self):
         if self.modulo:
@@ -125,49 +126,49 @@ class LinearRecursion:
                     r[i - j - 1] %= self.modulo
         return r[:len(poly1)]
 
-    def __get_value_by_index(self, index):
+    def _polypow(self, poly, exponent):
+        result = [0] * len(poly)
+        result[0] = 1
+        while exponent:
+            if exponent & 1:
+                result = self.__polymul(result, poly)
+            poly = self.__polymul(poly, poly)
+            exponent >>= 1
+        return result
+
+    def _get_poly_by_index(self, index):
         if not len(self.recursion):
             self.get_recursion()
         length = len(self.recursion)
-        r, t = [0] * length, [0] * length
-        r[0] = 1
+        t = [0] * length
         if length == 1:
             t[0] = self.recursion[0]
         else:
             t[1] = 1
-        while index:
-            if index & 1:
-                r = self.__polymul(r, t)
-            t = self.__polymul(t, t)
-            index >>= 1
-        result = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
+        return self._polypow(t, index)
+
+    def _get_value_by_poly(self, poly):
+        result = sum(map(lambda i: poly[i] * self.initial_values[i], range(len(poly))))
         if self.modulo:
             result %= self.modulo
         return result
 
-    def __get_value_by_range(self, minimum, maximum):
+    def __get_value_by_index(self, index):
+        return self._get_value_by_poly(self._get_poly_by_index(index))
+
+    def __get_value_by_range(self, minimum, maximum, step):
         # [minimum, maximum)
-        result = [0] * (maximum - minimum)
-        if not len(self.recursion):
-            self.get_recursion()
-        length = len(self.recursion)
-        r, t = [0] * length, [0] * length
-        r[0] = 1
-        if length == 1:
-            t[0] = self.recursion[0]
-        else:
-            t[1] = 1
-        s = [x for x in t]
-        while minimum:
-            if minimum & 1:
-                r = self.__polymul(r, t)
-            t = self.__polymul(t, t)
-            minimum >>= 1
-        result[0] = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
+        if maximum is None:
+            raise ArithmeticError('could not deal with an infinite sequence')
+        minimum = minimum or 0
+        step = step or 1
+        if step < 0:
+            raise ArithmeticError('could not deal with negative step')
+        result = [0] * ((maximum - minimum - 1) // step + 1)
+        s = self._get_poly_by_index(step)
+        r = self._get_poly_by_index(minimum)
+        result[0] = self._get_value_by_poly(r)
         for j in range(1, len(result)):
             r = self.__polymul(r, s)
-            result[j] = sum(map(lambda i: r[i] * self.initial_values[i], range(len(self.recursion))))
-        if self.modulo:
-            for j in range(len(result)):
-                result[j] %= self.modulo
+            result[j] = self._get_value_by_poly(r)
         return result
