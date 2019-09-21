@@ -21,6 +21,8 @@ Python3 package `pycryptodome`.
 
 Just use `RUNME.sh` to start.
 
+`private_key` should put in the same folder of `public_key`.
+
 ---
 
 ### Supported function:
