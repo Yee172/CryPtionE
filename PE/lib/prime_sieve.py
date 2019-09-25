@@ -28,7 +28,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         upper_bound {int} -- upper bound (default: {10 ** 7})
         only_prime {bool} -- whether only return prime or
                              with [is_prime or check_is_prime or minimum_factor] ahead (default: {True})
-                             default True situation:
+                             default False situation:
                                  return is_prime and prime
         info {bool} -- need info or not (default: {True})
     
