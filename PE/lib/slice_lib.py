@@ -14,7 +14,7 @@ def rearrange_slice_for_infinite_sequence(s):
         if minimum is None:
             raise ArithmeticError('could not deal with an infinite sequence')
         else:
-            maximum = maximum or 0
+            maximum = maximum or -1
             minimum, maximum = minimum - (minimum - maximum - 1) // step * step, minimum + 1
     minimum = minimum or 0
     if maximum is None:
