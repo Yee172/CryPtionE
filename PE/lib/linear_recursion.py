@@ -1,4 +1,5 @@
 from extended_gcd import inverse
+from slice_lib import rearrange_slice_for_infinite_sequence
 
 class LinearRecursion:
     '''linear recursion
@@ -18,9 +19,10 @@ class LinearRecursion:
     def __getitem__(self, item):
         if isinstance(item, int):
             return self.__get_value_by_index(item)
-        if isinstance(item, slice):
-            return self.__get_value_by_range(item.start, item.stop, item.step)
-        raise TypeError('list indices must be integers or slices, not {}'.format(item.__class__.__name__))
+        elif isinstance(item, slice):
+            return self.__get_value_by_range(item)
+        else:
+            raise TypeError('list indices must be integers or slices, not {}'.format(item.__class__.__name__))
 
     def get_recursion(self):
         if self.modulo:
@@ -156,19 +158,21 @@ class LinearRecursion:
     def __get_value_by_index(self, index):
         return self._get_value_by_poly(self._get_poly_by_index(index))
 
-    def __get_value_by_range(self, minimum, maximum, step):
-        # [minimum, maximum)
-        if maximum is None:
-            raise ArithmeticError('could not deal with an infinite sequence')
-        minimum = minimum or 0
-        step = step or 1
-        if step < 0:
-            raise ArithmeticError('could not deal with negative step')
+    def __get_value_by_range(self, slice_item):
+        reverse_flag, minimum, maximum, step = rearrange_slice_for_infinite_sequence(slice_item)
+        if minimum >= maximum:
+            return []
         result = [0] * ((maximum - minimum - 1) // step + 1)
         s = self._get_poly_by_index(step)
         r = self._get_poly_by_index(minimum)
-        result[0] = self._get_value_by_poly(r)
-        for j in range(1, len(result)):
-            r = self.__polymul(r, s)
-            result[j] = self._get_value_by_poly(r)
+        if reverse_flag:
+            result[-1] = self._get_value_by_poly(r)
+            for j in range(len(result) - 2, -1, -1):
+                r = self.__polymul(r, s)
+                result[j] = self._get_value_by_poly(r)
+        else:
+            result[0] = self._get_value_by_poly(r)
+            for j in range(1, len(result)):
+                r = self.__polymul(r, s)
+                result[j] = self._get_value_by_poly(r)
         return result
