@@ -104,7 +104,7 @@ def solution_spliter(all_message_in_file):
     for i, char in enumerate(all_message_in_file):
         if new_line_number > hash_number:
             break
-        if char == '#':
+        if char == '#' and all_message_in_file[i + 1] == ' ' and (i == 0 or all_message_in_file[i - 1] == '\n'):
             hash_number += 1
         if char == '\n':
             new_line_number += 1
