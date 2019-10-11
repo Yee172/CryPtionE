@@ -1,17 +1,23 @@
 from prime_sieve import prime_sieve
 from binary_indexed_tree import BinaryIndexedTree
 
-def prime_counting(upper_bound=10 ** 10):
+def prime_counting(upper_bound=10 ** 10, **kwargs):
     """prime counting function
     
     count prime number below upper_bound with O(n^{3 / 4}) time complexity
     
+    Arguments:
+        **kwargs {[type]} -- [description]
+            with_prime {bool} -- when with_prime is true, this function returns pi and prime
+
     Keyword Arguments:
         upper_bound {int} -- upper bound (default: {10 ** 10})
     
     Returns:
         function -- pi function, which can count the number of prime numbers in interval [0, n], where n is the input parameter
     """
+    with_prime = kwargs.get('with_prime', False)
+
     tiny_upper_bound = int(upper_bound ** .5) + 2
     tiny_pi, prime = prime_sieve(tiny_upper_bound, only_prime=False, info=False, raw_is_prime=False)
     tiny_pi[0] = 0
@@ -61,4 +67,7 @@ def prime_counting(upper_bound=10 ** 10):
             k += 1
         return k + G[1] - 1
 
-    return pi
+    if with_prime:
+        return pi, prime
+    else:
+        return pi
