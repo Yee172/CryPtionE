@@ -12,26 +12,28 @@ class LinearRecursion:
     """
     def __init__(self, initial_values, recursion=[], **kwargs):
         modulo = kwargs.get('modulo', 0)
+        EPS = kwargs.get('EPS', 1e-8)
         if modulo:
             self.__class__ = LinearRecursionModulo
             self.__init__(initial_values, recursion, modulo)
         else:
-            self.__class__ = LinearRecursionNormal
-            self.__init__(initial_values, recursion)
+            self.__class__ = LinearRecursionDecimal
+            self.__init__(initial_values, recursion, EPS)
 
-class LinearRecursionNormal:
-    '''linear recursion
+class LinearRecursionPrototype:
+    """linear recursion prototype
     
     Berlekamp Massey Algorithm implement
-    
-    Variables:
-        EPS {number} -- epsilon
-    '''
-    EPS = 1e-8
-
+    """
     def __init__(self, initial_values, recursion):
         self.initial_values = initial_values
         self.recursion = recursion
+
+    def get_recursion(self):
+        raise NotImplementedError
+
+    def prefix_summation(self):
+        raise NotImplementedError
 
     def __getitem__(self, item):
         if isinstance(item, int):
@@ -41,64 +43,8 @@ class LinearRecursionNormal:
         else:
             raise TypeError('list indices must be integers or slices, not {}'.format(item.__class__.__name__))
 
-    def get_recursion(self):
-        last_fail_state = []
-        for i in range(len(self.initial_values)):
-            expectation_delta = -self.initial_values[i]
-            for j, r in enumerate(self.recursion):
-                expectation_delta += self.initial_values[i - j - 1] * r
-            if -LinearRecursionNormal.EPS < expectation_delta < LinearRecursionNormal.EPS:
-                continue
-            if not self.recursion:
-                self.recursion = [0] * (i + 1)
-                fail = i
-                delta = expectation_delta
-                continue
-            multiple = -expectation_delta / delta
-            change = [0] * (i - fail - 1) + [-multiple]
-            for r in last_fail_state:
-                addition = r * multiple
-                change.append(addition)
-            if len(change) < len(self.recursion):
-                change += [0] * (len(self.recursion) - len(change))
-            for j, r in enumerate(self.recursion):
-                change[j] += r
-            if i - fail + len(last_fail_state) >= len(self.recursion):
-                last_fail_state = self.recursion
-                fail = i
-                delta = expectation_delta
-            self.recursion = change
-        return self.recursion
-
-    def prefix_summation(self):
-        if not self.recursion:
-            self.get_recursion()
-        initial_values = self.initial_values[:len(self.recursion)] + [self[len(self.recursion)]]
-        recursion = [0] * (len(self.recursion) + 1)
-        recursion[0] = 1
-        for i in range(len(self.recursion)):
-            initial_values[i + 1] += initial_values[i]
-            recursion[i] += self.recursion[i]
-            recursion[i + 1] -= self.recursion[i]
-        return self.__class__(initial_values, recursion)
-
-    def round_recursion(self, round_to_digit=0):
-        if round_to_digit:
-            self.recursion = list(map(lambda x: round(x, round_to_digit), self.recursion))
-        else:
-            self.recursion = list(map(round, self.recursion))
-
     def _polymul(self, poly1, poly2):
-        r = [0] * (len(poly1) + len(poly2) - 1)
-        for i, x in enumerate(poly1):
-            if x > LinearRecursionNormal.EPS or x < -LinearRecursionNormal.EPS:
-                for j, y in enumerate(poly2):
-                    r[i + j] += x * y
-        for i in range(len(poly1) + len(poly2) - 2, len(poly1) - 1, -1):
-            if r[i] > LinearRecursionNormal.EPS or r[i] < -LinearRecursionNormal.EPS:
-                for j in range(len(poly1) - 1, -1, -1):
-                    r[i - j - 1] += r[i] * self.recursion[j]
-        return r[:len(poly1)]
+        raise NotImplementedError
 
     def _polypow(self, poly, exponent):
         assert(isinstance(exponent, int) and exponent >= 0)
@@ -147,13 +93,86 @@ class LinearRecursionNormal:
                 result[j] = self._get_value_by_poly(r)
         return result
 
-class LinearRecursionModulo(LinearRecursionNormal):
+class LinearRecursionDecimal(LinearRecursionPrototype):
+    """general linear recursion
+    
+    Berlekamp Massey Algorithm implement
+    
+    Extends:
+        LinearRecursionPrototype
+    """
+    def __init__(self, initial_values, recursion, EPS):
+        self.initial_values = initial_values
+        self.recursion = recursion
+        self.EPS = EPS
+
+    def get_recursion(self):
+        last_fail_state = []
+        for i in range(len(self.initial_values)):
+            expectation_delta = -self.initial_values[i]
+            for j, r in enumerate(self.recursion):
+                expectation_delta += self.initial_values[i - j - 1] * r
+            if -self.EPS < expectation_delta < self.EPS:
+                continue
+            if not self.recursion:
+                self.recursion = [0] * (i + 1)
+                fail = i
+                delta = expectation_delta
+                continue
+            multiple = -expectation_delta / delta
+            change = [0] * (i - fail - 1) + [-multiple]
+            for r in last_fail_state:
+                addition = r * multiple
+                change.append(addition)
+            if len(change) < len(self.recursion):
+                change += [0] * (len(self.recursion) - len(change))
+            for j, r in enumerate(self.recursion):
+                change[j] += r
+            if i - fail + len(last_fail_state) >= len(self.recursion):
+                last_fail_state = self.recursion
+                fail = i
+                delta = expectation_delta
+            self.recursion = change
+        return self.recursion
+
+    def prefix_summation(self):
+        if not self.recursion:
+            self.get_recursion()
+        initial_values = self.initial_values[:len(self.recursion)] + [self[len(self.recursion)]]
+        recursion = [0] * (len(self.recursion) + 1)
+        recursion[0] = 1
+        for i in range(len(self.recursion)):
+            initial_values[i + 1] += initial_values[i]
+            recursion[i] += self.recursion[i]
+            recursion[i + 1] -= self.recursion[i]
+        return self.__class__(initial_values, recursion)
+
+    def round_recursion(self, round_to_digit=0):
+        if round_to_digit:
+            self.recursion = list(map(lambda x: round(x, round_to_digit), self.recursion))
+        else:
+            self.recursion = list(map(round, self.recursion))
+
+    def _polymul(self, poly1, poly2):
+        r = [0] * (len(poly1) + len(poly2) - 1)
+        for i, x in enumerate(poly1):
+            if x > self.EPS or x < -self.EPS:
+                for j, y in enumerate(poly2):
+                    r[i + j] += x * y
+        for i in range(len(poly1) + len(poly2) - 2, len(poly1) - 1, -1):
+            if r[i] > self.EPS or r[i] < -self.EPS:
+                for j in range(len(poly1) - 1, -1, -1):
+                    r[i - j - 1] += r[i] * self.recursion[j]
+        return r[:len(poly1)]
+
+
+class LinearRecursionModulo(LinearRecursionPrototype):
     """linear recursion with modulo
     
     Berlekamp Massey Algorithm implement
     
     Extends:
-        LinearRecursionNormal
+        LinearRecursionPrototype
     """
     def __init__(self, initial_values, recursion, modulo):
         super(LinearRecursionModulo, self).__init__(initial_values, recursion)
