@@ -1,7 +1,7 @@
 def generate_quadratic_field(d, modulo=0):
-    """generate quadratic field number class
+    """Generate quadratic field number class
     
-    generate quadratic field number class
+    Generate quadratic field number class
     
     Arguments:
         d {int} -- nonzero square free integer for generating quadratic field

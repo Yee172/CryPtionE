@@ -1,7 +1,7 @@
 class BinaryIndexedTree:
-    """binary indexed tree
+    """Binary indexed tree
     
-    simple binary indexed tree 1D
+    Simple binary indexed tree 1D
     """
     def __init__(self, size):
         self.size = size

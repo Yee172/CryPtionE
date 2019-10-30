@@ -3,7 +3,7 @@ from extended_gcd import extended_gcd
 def Chinese_remainder_theorem(M, R):
     """Chinese remainder theorem
     
-    extended Chinese remainder theorem, can deal with the situation of not relatively prime
+    Extended Chinese remainder theorem, can deal with the situation of not relatively prime
     
     Arguments:
         M {list/tuple} -- a list of divisors

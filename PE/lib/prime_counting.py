@@ -2,9 +2,9 @@ from prime_sieve import prime_sieve
 from binary_indexed_tree import BinaryIndexedTree
 
 def prime_counting(upper_bound=10 ** 10, **kwargs):
-    """prime counting function
+    """Prime counting function
     
-    count prime number below upper_bound with O(n^{3 / 4}) time complexity
+    Count prime number below upper_bound with O(n^{3 / 4}) time complexity
     
     Arguments:
         **kwargs {[type]} -- [description]

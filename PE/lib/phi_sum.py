@@ -2,9 +2,9 @@ from collections import defaultdict
 from phi_sieve import phi_sieve
 
 def phi_sum(n=10 ** 11, return_single_value=True, info=True, **kwargs):
-    '''Return the summation of phi up to n or the function to get the summation of phi
+    """Return the summation of phi up to n or the function to get the summation of phi
     
-    sieve of Dujiao without the memory trick in order to be more general
+    Sieve of Dujiao without the memory trick in order to be more general
     
     Arguments:
         **kwargs {[type]} -- [description]
@@ -18,7 +18,7 @@ def phi_sum(n=10 ** 11, return_single_value=True, info=True, **kwargs):
     Returns:
         int -- the corresponding value
             or the corresponding DFS 
-    '''
+    """
     module = kwargs.get('module', 0)
 
     brute_force_upperbound = int(n ** (2 / 3)) + 1

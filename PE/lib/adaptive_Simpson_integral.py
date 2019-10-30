@@ -1,7 +1,7 @@
 def adaptive_Simpson_integral(f, left, right, eps=1e-6):
-    """integral a function from left to right with eps
+    """Integral a function from left to right with eps
     
-    adaptive Simpson integral
+    Adaptive Simpson integral
     
     Arguments:
         f {function} -- integral function

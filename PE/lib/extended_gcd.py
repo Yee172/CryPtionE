@@ -37,4 +37,4 @@ def inverse(n, modulo):
     """
     d, x, y = [0], [0], [0]
     extended_gcd(n, modulo, d, x, y)
-    return x[0] % modulo
+    return x[0] % modulo if d[0] == 1 else -1

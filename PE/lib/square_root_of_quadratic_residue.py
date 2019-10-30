@@ -1,9 +1,9 @@
 from quadratic_field import generate_quadratic_field
 
 def square_root_of_quadratic_residue(n, modulo):
-    """square root of quadratic residue
+    """Square root of quadratic residue
     
-    solve the square root of quadratic residue using Cipolla's algorithm with Legendre symbol
+    Solve the square root of quadratic residue using Cipolla's algorithm with Legendre symbol
     
     Arguments:
         n {int} -- quadratic residue

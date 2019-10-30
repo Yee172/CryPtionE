@@ -36,6 +36,9 @@ class DisjointSetUnion(DisjointSetUnionPrototype):
     """Disjoint set union
 
     Same as DisjointSetUnionPrototype
+
+    Extends:
+        DisjointSetUnionPrototype
     """
     pass
 
@@ -44,6 +47,9 @@ class DisjointSetUnionCounting(DisjointSetUnionPrototype):
     """Disjoint set union with counting
 
     Basis usages and functions
+    
+    Extends:
+        DisjointSetUnionPrototype
     """
     def __init__(self, length):
         super(DisjointSetUnionCounting, self).__init__(length)

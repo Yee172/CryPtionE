@@ -6,7 +6,7 @@ __all__ = ['LinearRecursion']
 
 
 class LinearRecursion:
-    """linear recursion
+    """Linear recursion
     
     Berlekamp Massey Algorithm implement
     """
@@ -21,7 +21,7 @@ class LinearRecursion:
             self.__init__(initial_values, recursion, EPS)
 
 class LinearRecursionPrototype:
-    """linear recursion prototype
+    """Linear recursion prototype
     
     Berlekamp Massey Algorithm implement
     """
@@ -94,7 +94,7 @@ class LinearRecursionPrototype:
         return result
 
 class LinearRecursionDecimal(LinearRecursionPrototype):
-    """general linear recursion
+    """General linear recursion
     
     Berlekamp Massey Algorithm implement
     
@@ -167,7 +167,7 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
 
 
 class LinearRecursionModulo(LinearRecursionPrototype):
-    """linear recursion with modulo
+    """Linear recursion with modulo
     
     Berlekamp Massey Algorithm implement
     

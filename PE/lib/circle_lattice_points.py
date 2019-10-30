@@ -1,7 +1,7 @@
 def circle_lattice_points(radium_square):
-    """circle lattice points counter
+    """Circle lattice points counter
     
-    calculate lattice points inside circle x^{2} + y^{2} <= radium_square
+    Calculate lattice points inside circle x^{2} + y^{2} <= radium_square
         with O((1 - 1 / sqrt(2)) sqrt(radium_square)) time complexity
 
     see alternative methods at https://oeis.org/A057655
