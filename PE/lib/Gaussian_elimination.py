@@ -50,7 +50,7 @@ class GaussianEliminationDecimal(GaussianEliminationPrototype):
         GaussianEliminationPrototype
     """
     def __init__(self, dimension, matrix, augment_dimension, EPS):
-        super(GaussianEliminationNormal, self).__init__(dimension, matrix, augment_dimension)
+        super(GaussianEliminationDecimal, self).__init__(dimension, matrix, augment_dimension)
         self.EPS = EPS
 
     def sign(self, x):
