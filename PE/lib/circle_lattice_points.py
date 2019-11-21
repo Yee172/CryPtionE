@@ -1,3 +1,5 @@
+from integer_operation import integer_sqrt
+
 def circle_lattice_points(radium_square):
     """Circle lattice points counter
     
@@ -12,7 +14,8 @@ def circle_lattice_points(radium_square):
     Returns:
         int -- number of lattice points inside the circle
     """
-    lower_n = int((radium_square // 2) ** .5)
-    upper_n = int(radium_square ** .5)
+    # radium_square = Decimal(radium_square)
+    lower_n = integer_sqrt(radium_square // 2)
+    upper_n = integer_sqrt(radium_square)
     delta_n = upper_n - lower_n
-    return (2 * lower_n + 1) ** 2 + sum(int((radium_square - (lower_n + k) ** 2) ** .5) for k in range(1, delta_n + 1)) * 8 + 4 * delta_n
+    return (2 * lower_n + 1) ** 2 + sum(integer_sqrt(radium_square - (lower_n + k) ** 2) for k in range(1, delta_n + 1)) * 8 + 4 * delta_n
