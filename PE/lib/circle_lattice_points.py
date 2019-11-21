@@ -14,7 +14,6 @@ def circle_lattice_points(radium_square):
     Returns:
         int -- number of lattice points inside the circle
     """
-    # radium_square = Decimal(radium_square)
     lower_n = integer_sqrt(radium_square // 2)
     upper_n = integer_sqrt(radium_square)
     delta_n = upper_n - lower_n
