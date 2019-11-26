@@ -145,7 +145,7 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
             initial_values[i + 1] += initial_values[i]
             recursion[i] += self.recursion[i]
             recursion[i + 1] -= self.recursion[i]
-        return self.__class__(initial_values, recursion)
+        return self.__class__(initial_values, recursion, self.EPS)
 
     def round_recursion(self, round_to_digit=0):
         if round_to_digit:
