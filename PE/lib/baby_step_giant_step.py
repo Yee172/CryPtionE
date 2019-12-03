@@ -13,44 +13,43 @@ def baby_step_giant_step(A, B, C, **kwargs):
         B {int} -- B
         C {int} -- C
         **kwargs {[type]} -- [description]
-            guess_limit {int} -- the maximum guess attempt times from x equals 0 (default: {100})
-                                 [0, guess_limit)
+            guess_limit {int} -- the maximum guess attempt times from x equals 0, the guessing range is
+                                 [0, guess_limit), and guess_limit must be at least 1 (default: {100})
     
     Returns:
-        int -- the smallest positive solution of the equation or -1
+        int -- the smallest non-negative solution of the equation or -1
     """
     guess_attempt = 1
-    guess_limit = kwargs.get('guess_limit', 100)
-    baby_step_mapping = dict()
+    guess_limit = max(1, kwargs.get('guess_limit', 100))
     for guess in range(guess_limit):
         if guess_attempt == B:
             return guess
-        if guess_attempt not in baby_step_mapping:
-            baby_step_mapping[guess_attempt] = guess
         guess_attempt = guess_attempt * A % C
 
-    D = 1
-    d = 0
-    tmp = gcd(A, C)
-    while tmp ^ 1:
-        if B % tmp:
+    splitted_A = 1
+    baby_step_shift = 0
+    G = gcd(A, C)
+    while G ^ 1:
+        if B % G:
             return -1
-        d += 1
-        C //= tmp
-        B //= tmp
-        D = D * A // tmp % C
-        tmp = gcd(A, C)
+        baby_step_shift += 1
+        C //= G
+        B //= G
+        splitted_A = A // G * splitted_A % C
+        G = gcd(C, G)
 
+    baby_step_mapping = dict()
     M = integer_sqrt(C)
-    for i in range(guess_limit, M + 1):
-        if guess_attempt not in baby_step_mapping:
-            baby_step_mapping[guess_attempt] = i
-        guess_attempt = guess_attempt * A % C
+    baby_step_value = 1
+    for baby_step in range(M + 1):
+        if baby_step_value not in baby_step_mapping:
+            baby_step_mapping[baby_step_value] = baby_step
+        baby_step_value = baby_step_value * A % C
 
-    K = pow(A, M, C)
-    for i in range(M + 1):
-        tmp = inverse(D, C) * B % C
-        if tmp in baby_step_mapping:
-            return i * M + baby_step_mapping[tmp] + d
-        D = D * K % C
+    giant_step_length = pow(inverse(A, C), M, C)
+    giant_step_value = inverse(splitted_A, C) * B % C
+    for giant_step in range(M + 1):
+        if giant_step_value in baby_step_mapping:
+            return giant_step * M + baby_step_mapping[giant_step_value] + baby_step_shift
+        giant_step_value = giant_step_value * giant_step_length % C
     return -1
