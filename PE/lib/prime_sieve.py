@@ -36,7 +36,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if only_prime:
             list -- a list of prime with index up to upper_bound
         else:
-            tuple -- [is_prime or check_is_prime or minimum_factor] and [a list of prime with index up to upper_bound]
+            tuple -- subset of [check_is_prime, minimum_factor, is_prime] and [a list of prime with index up to upper_bound]
     """
     raw_is_prime = kwargs.get('raw_is_prime', False)
     function_is_prime = kwargs.get('function_is_prime', False)
@@ -187,9 +187,9 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                         return False
                 return True
             return_list.append(check_is_prime)
-        elif with_minimum_factor:
+        if with_minimum_factor:
             return_list.append(minimum_factor)
-        else:
+        if not (function_is_prime or with_minimum_factor):
             return_list.append(is_prime)
         return_list.append(prime)
         return tuple(return_list)
