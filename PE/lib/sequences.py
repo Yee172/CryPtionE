@@ -27,7 +27,7 @@ def Horadam(p, q, r, s, **kwargs):
 def Fibonacci(**kwargs):
     """Fibonacci sequence
     
-    Fibonacci[0] = 1, Fibonacci[1] = 1,
+    Fibonacci[0] = 0, Fibonacci[1] = 1,
     Fibonacci[n] = Fibonacci[n - 1] + Fibonacci[n - 2]
     
     Arguments:
