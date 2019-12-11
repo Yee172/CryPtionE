@@ -1,0 +1,32 @@
+# For every n \geq 1 the prime-counting function \pi(n)
+# is equal to the number of primes not exceeding n.
+# We say that a sequence of integers u = (u_{0}, ..., u_{m})
+# is a \pi sequence if
+#    u_{n} \geq 1 for every n
+#    u_{n + 1} = \pi(u_{n})
+#    u has two or more elements
+# Let c(u) be the number of elements of u that are not prime.
+# Let p(n, k) be the number of \pi sequences u for which
+# u_{0} \leq n and c(u) = k.
+# Let P(n) be the product of all p(n, k) that are larger
+# than 0.
+# Find P(10^{8}). Give your answer modulo 1000000007.
+# ----------------------------------------------------
+# Analysis: brute force
+
+a412e0e37829b370c305d384d1025faa4016c15c382525f5fcb3e1dfe96da8368611f96c4693865cb44fd0a9e0cefc14eed7
+2725eb2d11a6866863808f3cacd667e512054f76cb0785dd7bd5b8c494667adda4115afb8738225274e6398314159b8869a3
+38e9a68b8e55cfa652dd0b09860440c91936cd6dc54410dd5bbb8c5ad14aae4b1b3403363785db350240e9fafb9facaa2103
+e4048bcfd7b1aca5cb6e7da4ef9cfea164498476a50d97ae871a5cde916e55b55bb31c56838d70536d0715fed793fdc28741
+89b5176a67ba2b1541715a30851738f24813c50337b8a16111aaa2edfab7c1f1f18304d8fc89f0ff5e994c8553e773dd51b1
+85f87c33433e7c2d2d7c2dc9c05295a4fb1577e30c82ae4b5742325d97aa3ba53b981cbee0c19c4e5abcaa6bbfae99081818
+2eb4b5cb9428b3451c027321005748d497e5e81c13c6e6286093918d553cb4c34c83d1499629c17219c4e38f39c98b86f47e
+fce5836e8ee65491a8b290b7edc1be5eab44b4905e1bc1bfc43409bf6eead7b4f8340f0fbbe208a73e97b42695d2e9ef2365
+27c5edb1fb18b4ba04c218515bd2c0d94777848ef8a1c267efc82d5b828e5ed92a234817e50ef87f7d2af6c210be6c6285c9
+8355cf6ce24cb8c600c2c98bb5c8d14b641056d984b718389ee725e0705e47c97fda017c0e9bc35939893992ac896dcd92a4
+897c65887ab67173d9e1ee9446b767367c2d2d7c2334925e351c9fb58ae3d464b22cc94c46d43f3bbe1d16c19d778bdbd500
+f7f2d358d91b36283e74f069c7bda47dac7b1ee92b71345f71a68d667bc2b158f13067c6b4f4af32b88d65f78d0abca6369a
+6b7cff0b9e9b2203026db36cf3c364f7e0c15a57f66443b1981754d6e02f7eb48ae60cad0219a91e0f545b9eee76ae670672
+f63cd5ee6f89be674d5c5e2e7bc9d06e12488759c3b3112ff7ce8d36323a0ea67341bd9240014b403e438fcc4da1e055a8a1
+86c9bff3020dc25b9c8c8befc92642ed2d4369d1e3050f88b1f416eb0f06aa11583d8eb569a3bd861f3007f1d68a9c5cf063
+d9e068f1c0bf19c4f87472d5b9068eac1640a511197d671820c1
