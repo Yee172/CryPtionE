@@ -1,37 +1,38 @@
-def phi_sieve(MAXN=10 ** 7, only_phi=False, info=True, **kwargs):
-    """Return a list of prime and phi with index up to MAXN
+def phi_sieve(upper_bound=10 ** 7, only_phi=False, info=True, **kwargs):
+    """Return a list of prime and phi with index up to upper_bound
     
     Sieve of Euler in normal way
     
     Arguments:
         **kwargs {[type]} -- [description]
             function_phi {bool} -- this argument determines whether return the
-                                   phi function that can calculate up to MAXN ** 2
+                                   phi function that can calculate up to upper_bound ** 2
 
     Keyword Arguments:
-        MAXN {int} -- upper bound (default: {10 ** 7})
+        upper_bound {int} -- upper bound (default: {10 ** 7})
         only_phi {bool} -- only return the list of phi or plus the list of prime (default: {False})
         info {bool} -- need info or not (default: {True})
     
     Returns:
-        list -- a list of prime and phi with index up to MAXN
-             or a list of phi with index up to MAXN
+        list -- a list of prime and phi with index up to upper_bound
+             or a list of phi with index up to upper_bound
     """
     if info:
         print('Sieving prime numbers and their phi...')
 
     prime = []
-    is_prime = [True] * MAXN
-    phi = [0] * MAXN
+    is_prime = [True] * upper_bound
+    phi = [0] * upper_bound
     is_prime[0] = False
-    is_prime[1] = False
-    phi[1] = 1
-    for i in range(2, MAXN):
+    if upper_bound > 1:
+        is_prime[1] = False
+        phi[1] = 1
+    for i in range(2, upper_bound):
         if is_prime[i]:
             prime.append(i)
             phi[i] = i - 1
         for x in prime:
-            if i * x >= MAXN:
+            if i * x >= upper_bound:
                 break
             is_prime[i * x] = False
             if i % x:
@@ -41,7 +42,7 @@ def phi_sieve(MAXN=10 ** 7, only_phi=False, info=True, **kwargs):
                 break
 
     def function_phi(n):
-        if n < MAXN:
+        if n < upper_bound:
             return phi[n]
         result = n
         for p in prime:

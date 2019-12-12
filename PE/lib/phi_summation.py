@@ -1,6 +1,7 @@
 from collections import defaultdict
 from phi_sieve import phi_sieve
 
+
 def phi_summation(n=10 ** 11, return_single_value=True, info=True, **kwargs):
     """Return the summation of phi up to n or the function to get the summation of phi
     
