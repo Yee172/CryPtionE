@@ -1,0 +1,21 @@
+# Two positive integers a are 2-friendly when
+# gcd(a, b) = 2^{t}, t > 0.
+# Let f(n) be the number of pairs, (p, q), of positive
+# integers with 1 \leq p < q \leq n such that p and q
+# are 2-friendly.
+# Find f(10^{11}) modulo 1000000007.
+# ----------------------------------------------------
+# Analysis: sieve of Dujiao
+#           Hint: do not forget to minus the \phi(1) when get the summation of \phi
+
+2d6d18673eae49871b20ae22e36bd83a86b870381ab3d9483e8b19bfb4ae308519e11f592dbbdd6c3adcd5ba0de8c33348ec
+94996747f3ef78124f7b2723a9d9e8ce313519ebf09f10bb6a145259be477b47a08b85429c52f76094320c537dc6336d3ea6
+22db0a3410119da36c5de1b0b366efb8a75380df6c464e8445286bf79506c90df364f4421a8b0f8bf3e803f0f0c80d729172
+2de23716613efee42cb8c3436fafd7d5206ada7a60c5ce5ba3bc85a666ea5d4b591e9ac090cf9c7b147db40dd3a4ca3b7a6f
+46f232561ea1415da114d4557b0c96899276f728fba6cb09327f28b7ce35ee4c3b295ff251f7a6bb71a5c519a6885f15538a
+fc02f0167da47c2d2d7c72d0d025d078b9ac2653140f39e468f3d4d126e511cd71c394606a3d6543ab1ce89254fd8a60219a
+7af544fc7b987f2cd41272c960e10e1d3fb692aaa8c8487c001ffdb0178fb5dcdee3da9581048488b69d2c8062719fe2b4fe
+9cc3b2f6e0cb1d92423fdc8ca61e606100f79f5f6cec71847f27c3bbcaa57417abc474adef9cc9087de79e2f1518552bd1e1
+c9d1b9b110e28be9cd1069ba65b41403f23e19c513626bffd2fc1b05cb81490cf1231be331d5d661c7e81d20d7e5a0725313
+0124069b6b56e14c16d191426832af45288bd8f1d3a53c2b7cd56c3b4c8658ddf6739a7a33cc657c6b49481f295d0f6489a8
+379ed8ad24edcada4f7159b0fe34da7e
