@@ -1,0 +1,44 @@
+# A composite number can be factored many different ways.
+# For instance, not including multiplication by one,
+# 24 can be factored in 7 distinct ways:
+#    24 = 2 * 2 * 2 * 3
+#    24 = 2 * 3 * 4
+#    24 = 2 * 2 * 6
+#    24 = 4 * 6
+#    24 = 3 * 8
+#    24 = 2 * 12
+#    24 = 24
+# Recall that the digital root of a number, in base 10,
+# is found by adding together the digits of that number,
+# and repeating that process until a number is arrived
+# at that is less than 10. Thus the digital root of 467 is 8.
+# We shall call a Digital Root Sum (DRS) the sum of the
+# digital roots of the individual factors of our number.
+# The maximum Digital Root Sum of 24 is 11.
+# The function mdrs(n) gives the maximum Digital Root
+# Sum of n. So mdrs(24) = 11.
+# Find \sum mdrs(n) for 1 < n < 1000000.
+# ----------------------------------------------------
+# Analysis: dynamic programming
+
+57198e43933d7f5a20a31ead65cadcfba1b04fd337d1c622dcfb1b0b6d53aadeb7caa3119d99f2398800fea0945f7f8ad107
+223d6d0361fe9c7bcb8037b675c17c42afa8d143ffd69708a942960865809cfd67a8740a1a0516685c9c24358040d2e60ae0
+7f461046d95c55f52ac238aa05a6352d46e0c7721744cfda8c3da87ed4eb737e5ffd5835596204eb7adc8cabfd0da344397b
+1d738dfb4be12f214b766a619384f5b15c749b7445b61fedca13ce90d9c59dd655dff93627df8a7ac98c028e08d716ec7f21
+aabfbbf73980663f7ca58def65897aae37f0d2578017ad1e346fa0dd9848b9c67ef15f1cfaa38791e96fbcd979f957d3ae61
+b9995bf866257c2d2d7c40003fa21d3a712908aa637bb58039a40639e26b3f4c7262f0ef9c8640f0ef7abf4350c1df5e10f6
+462a9c4933a223313c76abf827fe7b3cd657e8364dba7b351f02288055373e8a2e912be671df59bb3e8bee604ddaa9562b02
+ff4f364bd05f6f9832c5d7946eb5aed4f19cf08c181a72b55996935ab8b73d898ee35b147b0ae59853cd08b23ef50fc67a05
+3b24ab661b6ffe396a54e3f67df4ea705cb7533fd56dfdb4be4c598ea6e21209952f54a70ab8c10ea0cfb89e51310801bba9
+b8c4682fe83bd9548338271303fbdeaf081df22300f9f827d2209f33ffb1658ca9df0612480321d605e4c58bb276588ec934
+3123f4475b6bdf24bc71053d0d9d91ae7c2d2d7ca4943e876249e62caf195bbcb796bd10114c1543a9e5c92e23c48784c627
+ed8068500af645417e81ef07fd9b7fbf271b4e88f891a6d38a333b586c18e6f379e8266833af44d5f3b8639b3d25fbcdebdd
+94ffc6c1933c78512b85d3e142d21de3c1ecb8576cd61b574e95b8877f99cabf34cf249c17e4174c02515172fc2845817ef2
+17225aeba53bb9d6d8e5ca5ed82d34a5c31b55c300c9d88ea728c1764cf7b19f75a1c8322295a7c435ced137a334104fcf5d
+f3cac5fecefd5cbd9ffe5b97a0ac4483173ba1d9ad0c941bc17306d7ea7b4567e76bba0b451ef051fb44023658e4f443bd2d
+6fad2955b7d26c674c7bcb3ea7c4636d119c359356b7c0a8b9de7c2d2d7c9dbe2e58d106c5888dc9da6ac9db0526e3a119af
+3ad0d99632e8178043d3eb52149a70c3677a6c3b998354d2fb73d0413c940e5fb9369db51d2c8c8155815ece49278b16a653
+55f073682165e39a9a967788765807a1aba68a65c119387469f9046781b64ac212aa64722758864d2e8f72dfecf9c5532eb6
+ee28a3244f5e99c3e2e27d311156c0d2a05ca225173e29eed5f329a11bdca61f42fd9e0b8faacfb774ecf7bcc6e0383e0004
+271689e4222f936d5be16eebfa858b368b083a8c837de62699094a5a0ae21906099a37a977f8feca4980d334c1423e8f140d
+2e863c8a22e922409c84e9de9696e9f9d373ae66752db0fddb20793d31752317ac6f9deb
