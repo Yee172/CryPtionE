@@ -1,6 +1,5 @@
 from math import acos
 
-
 __all__ = ['ComplexNumber']
 
 

@@ -5,6 +5,7 @@ This library is set for various of sequences
 
 from linear_recursion import LinearRecursion
 
+
 def Horadam(p, q, r, s, **kwargs):
     """Fibonacci sequence
     

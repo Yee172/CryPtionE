@@ -1,6 +1,7 @@
 from prime_sieve import prime_sieve
 from binary_indexed_tree import BinaryIndexedTree
 
+
 def prime_counting(upper_bound=10 ** 10, **kwargs):
     """Prime counting function
     

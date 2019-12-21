@@ -1,5 +1,6 @@
 from integer_operation import integer_sqrt
 
+
 def circle_lattice_points(radium_square):
     """Circle lattice points counter
     

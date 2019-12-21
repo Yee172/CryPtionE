@@ -3,6 +3,7 @@
 This library is set for slice
 """
 
+
 def rearrange_slice_for_infinite_sequence(s):
     # [minimum, maximum)
     minimum = s.start

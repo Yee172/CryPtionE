@@ -1,7 +1,6 @@
 from extended_gcd import inverse
 from slice_lib import rearrange_slice_for_infinite_sequence
 
-
 __all__ = ['LinearRecursion']
 
 
@@ -19,6 +18,7 @@ class LinearRecursion:
         else:
             self.__class__ = LinearRecursionDecimal
             self.__init__(initial_values, recursion, EPS)
+
 
 class LinearRecursionPrototype:
     """Linear recursion prototype
@@ -92,6 +92,7 @@ class LinearRecursionPrototype:
                 r = self._polymul(r, s)
                 result[j] = self._get_value_by_poly(r)
         return result
+
 
 class LinearRecursionDecimal(LinearRecursionPrototype):
     """General linear recursion

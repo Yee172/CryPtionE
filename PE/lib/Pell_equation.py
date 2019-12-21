@@ -1,6 +1,7 @@
 from matrix import Matrix
 from slice_lib import rearrange_slice_for_infinite_sequence
 
+
 class PellEquation:
     """Pell Equation
     

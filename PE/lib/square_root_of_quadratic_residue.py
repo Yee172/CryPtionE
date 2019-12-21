@@ -1,5 +1,6 @@
 from quadratic_field import generate_quadratic_field
 
+
 def square_root_of_quadratic_residue(n, modulo):
     """Square root of quadratic residue
     

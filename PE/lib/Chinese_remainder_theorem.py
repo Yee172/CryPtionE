@@ -1,5 +1,6 @@
 from extended_gcd import extended_gcd
 
+
 def Chinese_remainder_theorem(M, R):
     """Chinese remainder theorem
     

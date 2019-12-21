@@ -46,6 +46,7 @@ def get_integer_power_summation_function(k, modulo=0):
 
     return (lambda n: integer_power_summation(n) % modulo) if modulo else integer_power_summation
 
+
 def sigma_summation(k, n, **kwargs):
     """Return the summation of the sigma_{k} function
     
@@ -76,6 +77,7 @@ def sigma_summation(k, n, **kwargs):
     for i in range(1, n // p + 1):
         result += (integer_power_summation_k(n // i) - integer_power_summation_k(n // (i + 1))) * i
     return result % modulo if modulo else result
+
 
 def sigma_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the sigma_{k} function
@@ -114,6 +116,7 @@ def sigma_summation_summation(k, n, **kwargs):
     result_positive_part *= n + 1
     result = result_positive_part - result_negative_part
     return result % modulo if modulo else result
+
 
 def sigma_summation_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the summation of the sigma_{k} function
@@ -161,6 +164,7 @@ def sigma_summation_summation_summation(k, n, **kwargs):
     result_part_3 //= 2
     result = result_part_1 - result_part_2 + result_part_3
     return result % original_modulo if original_modulo else result
+
 
 def sigma_summation_summation_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the summation of the summation of the sigma_{k} function
