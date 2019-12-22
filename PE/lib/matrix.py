@@ -1,3 +1,7 @@
+class MatrixPrototype:
+    pass
+
+
 class Matrix:
     """Matrix
     
