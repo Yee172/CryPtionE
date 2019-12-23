@@ -11,13 +11,13 @@ class LinearRecursion:
     """
     def __init__(self, initial_values, recursion=[], **kwargs):
         modulo = kwargs.get('modulo', 0)
-        EPS = kwargs.get('EPS', 1e-8)
+        precision = kwargs.get('precision', 1e-8)
         if modulo:
             self.__class__ = LinearRecursionModulo
             self.__init__(initial_values, recursion, modulo)
         else:
             self.__class__ = LinearRecursionDecimal
-            self.__init__(initial_values, recursion, EPS)
+            self.__init__(initial_values, recursion, precision)
 
 
 class LinearRecursionPrototype:
@@ -102,10 +102,10 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
     Extends:
         LinearRecursionPrototype
     """
-    def __init__(self, initial_values, recursion, EPS):
+    def __init__(self, initial_values, recursion, precision):
         self.initial_values = initial_values
         self.recursion = recursion
-        self.EPS = EPS
+        self.precision = precision
 
     def get_recursion(self):
         last_fail_state = []
@@ -113,7 +113,7 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
             expectation_delta = -self.initial_values[i]
             for j, r in enumerate(self.recursion):
                 expectation_delta += self.initial_values[i - j - 1] * r
-            if -self.EPS < expectation_delta < self.EPS:
+            if -self.precision < expectation_delta < self.precision:
                 continue
             if not self.recursion:
                 self.recursion = [0] * (i + 1)
@@ -146,7 +146,7 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
             initial_values[i + 1] += initial_values[i]
             recursion[i] += self.recursion[i]
             recursion[i + 1] -= self.recursion[i]
-        return self.__class__(initial_values, recursion, self.EPS)
+        return self.__class__(initial_values, recursion, self.precision)
 
     def round_recursion(self, round_to_digit=0):
         if round_to_digit:
@@ -157,11 +157,11 @@ class LinearRecursionDecimal(LinearRecursionPrototype):
     def _polymul(self, poly1, poly2):
         r = [0] * (len(poly1) + len(poly2) - 1)
         for i, x in enumerate(poly1):
-            if x > self.EPS or x < -self.EPS:
+            if x > self.precision or x < -self.precision:
                 for j, y in enumerate(poly2):
                     r[i + j] += x * y
         for i in range(len(poly1) + len(poly2) - 2, len(poly1) - 1, -1):
-            if r[i] > self.EPS or r[i] < -self.EPS:
+            if r[i] > self.precision or r[i] < -self.precision:
                 for j in range(len(poly1) - 1, -1, -1):
                     r[i - j - 1] += r[i] * self.recursion[j]
         return r[:len(poly1)]
