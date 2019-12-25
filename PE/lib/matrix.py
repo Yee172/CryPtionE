@@ -74,7 +74,7 @@ def generate_fixex_matrix_class(**kwargs):
                 return result
 
             def trace(self):
-                return super(MatrixModulo, self).trace() % modulo
+                return super(self.__class__, self).trace() % modulo
 
         return MatrixFixedModulo
     else:
@@ -360,4 +360,4 @@ class MatrixModulo(MatrixPrototype):
         return result
 
     def trace(self):
-        return super(MatrixModulo, self).trace() % self.modulo
+        return super(self.__class__, self).trace() % self.modulo
