@@ -64,7 +64,7 @@ class PellEquation:
     def __get_transfer_matrix(self):
         if self.no_solution:
             return None
-        transfer_matrix = Matrix(2)
+        transfer_matrix = Matrix(2, modulo=self.modulo)
         transfer_matrix[0] = [self.minimum_x, self.D * self.minimum_y]
         transfer_matrix[1] = [self.minimum_y, self.minimum_x]
         return transfer_matrix
@@ -78,24 +78,13 @@ class PellEquation:
             raise TypeError('list indices must be integers or slices, not {}'.format(item.__class__.__name__))
 
     def __get_solution_by_index(self, index):
-        modulo_flag = bool(self.modulo)
-        if modulo_flag:
-            self.modulo, Matrix.MODULO = Matrix.MODULO, self.modulo
-
         result = self.transfer_matrix ** (index + 1)
-
-        if modulo_flag:
-            self.modulo, Matrix.MODULO = Matrix.MODULO, self.modulo
         return result[0][0], result[1][0]
 
     def __get_solution_by_range(self, slice_item):
         reverse_flag, minimum, maximum, step = rearrange_slice_for_infinite_sequence(slice_item)
         if minimum >= maximum:
             return []
-        modulo_flag = bool(self.modulo)
-        if modulo_flag:
-            self.modulo, Matrix.MODULO = Matrix.MODULO, self.modulo
-
         result = [(0, 0)] * ((maximum - minimum - 1) // step + 1)
         s = self.transfer_matrix ** step
         r = self.transfer_matrix ** (minimum + 1)
@@ -109,7 +98,4 @@ class PellEquation:
             for j in range(1, len(result)):
                 r *= s
                 result[j] = r[0][0], r[1][0]
-
-        if modulo_flag:
-            self.modulo, Matrix.MODULO = Matrix.MODULO, self.modulo
         return result
