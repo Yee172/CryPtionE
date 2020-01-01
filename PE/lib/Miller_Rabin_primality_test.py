@@ -25,9 +25,9 @@ def Miller_Rabin_primality_test(n, **kwargs):
     using_fixed_test = kwargs.get('using_fixed_test', False)
     assert(isinstance(iteration_time, int) and iteration_time > 0)
 
-    if n == 2:
+    if n in [2, 3]:
         return True
-    if n < 2 or not n & 1:
+    if n < 2 or not n & 1 or not n % 3:
         return False
     d = n - 1
     p = 0
@@ -46,7 +46,7 @@ def Miller_Rabin_primality_test(n, **kwargs):
 
     if n < 10 ** 16 or using_fixed_test:
         test_list = [2, 3, 7, 61, 24251]
-        if n in test_list[1:]:
+        if n in test_list[2:]:
             return True
         if n == 46856248255981:
             return False
