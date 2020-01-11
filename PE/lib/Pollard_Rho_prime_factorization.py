@@ -29,10 +29,10 @@ def Pollard_Rho_prime_factorization(n):
     return t
 
 
-def get_max_prime_factor(n):
+def find_maximum_prime_factor(n):
     maximum_prime_factor = [0]
 
-    def get_max_prime_factor_dfs(n):
+    def find_maximum_prime_factor_dfs(n):
         if n == 1 or n <= maximum_prime_factor[0]:
             return
         if Miller_Rabin_primality_test(n):
@@ -44,8 +44,8 @@ def get_max_prime_factor(n):
             p = Pollard_Rho_prime_factorization(n)
         while not n % p:
             n //= p
-        get_max_prime_factor_dfs(p)
-        get_max_prime_factor_dfs(n)
+        find_maximum_prime_factor_dfs(p)
+        find_maximum_prime_factor_dfs(n)
 
-    get_max_prime_factor_dfs(n)
+    find_maximum_prime_factor_dfs(n)
     return maximum_prime_factor[0]
