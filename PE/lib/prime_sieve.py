@@ -269,4 +269,4 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             return_list.append(is_prime)
         if not without_prime:
             return_list.append(prime)
-        return tuple(return_list)
+        return tuple(return_list) if len(return_list) > 1 else return_list[0]
