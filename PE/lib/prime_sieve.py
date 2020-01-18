@@ -24,6 +24,11 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             with_divisor_number {bool} -- when only_prime is False, this argument determines whether
                                           return the divisor number of each number under
                                           upper_bound (default: {False})
+            with_prime_factor_number {bool} -- when only_prime is False, this argument determines whether
+                                               return the prime factor number of each number under
+                                               upper_bound (default: {False})
+            distinct_prime_factor {bool} -- when with_prime_factor_number is True, this argument determines whether
+                                            counting the distinct prime factor (default: {True})
             segment_prime_sieve {bool} -- this argument determines whether use segment prime sieve,
                                           when this argument is True, raw_is_prime and function_is_prime
                                           and with_minimum_factor would be ignored (default: {False})
@@ -51,6 +56,8 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
     with_minimum_factor = kwargs.get('with_minimum_factor', False)
     with_minimum_factor_time = kwargs.get('with_minimum_factor_time', False)
     with_divisor_number = kwargs.get('with_divisor_number', False)
+    with_prime_factor_number = kwargs.get('with_prime_factor_number', False)
+    distinct_prime_factor = kwargs.get('distinct_prime_factor', True)
     segment_prime_sieve = kwargs.get('segment_prime_sieve', False)
     without_prime = kwargs.get('without_prime', False)
 
@@ -71,6 +78,8 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             print('Warning: with_minimum_factor_time would be ignored when using segment prime sieve')
         if with_divisor_number:
             print('Warning: with_divisor_number would be ignored when using segment prime sieve')
+        if with_prime_factor_number:
+            print('Warning: with_prime_factor_number would be ignored when using segment prime sieve')
 
         lower_bound = kwargs.get('lower_bound', 1)
         if not isinstance(lower_bound, int) or lower_bound < 1:
@@ -120,7 +129,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if info:
             print('Sieving prime numbers below {}'.format(upper_bound))
 
-        if with_minimum_factor or with_minimum_factor_time or with_divisor_number:
+        if with_minimum_factor or with_minimum_factor_time or with_divisor_number or with_prime_factor_number:
             if info:
                 print('Using the sieve of Euler in normal way')
 
@@ -128,7 +137,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             is_prime = [True] * upper_bound
             is_prime[0] = False
             is_prime[1] = False
-            if with_minimum_factor:
+            if with_minimum_factor or (with_prime_factor_number and distinct_prime_factor):
                 minimum_factor = [1] * upper_bound
                 minimum_factor[0] = 0
 
@@ -177,6 +186,23 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                 def divisor_number_part_1(*args, **kwargs):
                     pass
 
+            if with_prime_factor_number:
+                prime_factor_number = [1] * upper_bound
+                prime_factor_number[0] = 0
+                prime_factor_number[1] = 0
+
+                if distinct_prime_factor:
+                    def prime_factor_number_part_0(y, i):
+                        prime_factor_number[y] = prime_factor_number[i] if minimum_factor[y] == minimum_factor[i] else prime_factor_number[i] + 1
+
+                else:
+                    def prime_factor_number_part_0(y, i):
+                        prime_factor_number[y] = prime_factor_number[i] + 1
+
+            else:
+                def prime_factor_number_part_0(*args, **kwargs):
+                    pass
+
             for i in range(2, upper_bound):
                 if is_prime[i]:
                     prime.append(i)
@@ -188,6 +214,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                     is_prime[y] = False
                     minimum_factor_part_1(y, x)
                     divisor_number_part_0(y, i)
+                    prime_factor_number_part_0(y, i)
                     if not i % x:
                         minimum_factor_time_part_0(y, i)
                         divisor_number_part_1(y, i)
@@ -265,7 +292,9 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             return_list.append(minimum_factor_time)
         if with_divisor_number:
             return_list.append(divisor_number)
-        if not (function_is_prime or with_minimum_factor or with_minimum_factor_time or with_divisor_number):
+        if with_prime_factor_number:
+            return_list.append(prime_factor_number)
+        if not (function_is_prime or with_minimum_factor or with_minimum_factor_time or with_divisor_number or with_prime_factor_number):
             return_list.append(is_prime)
         if not without_prime:
             return_list.append(prime)
