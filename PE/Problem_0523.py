@@ -14,10 +14,13 @@
 # the decimal point.
 # ----------------------------------------------------
 # Analysis: brute force
+#           Hint: if the first (i - 1) elements are sorted, it would take 2^{j - 1} steps to move the ith element to the jth position, where j < i
+#                 Under the condition that the first (i - 1) elements are sorted, the ith element is evenly distributed through 1 to i
+#                 Therefore, E(i) = E(i - 1) + (\sum_{j = 1}^{i - 1} 2^{j - 1}) / i = E(i - 1) + (2^{j - 1} - 1) / i
 
-3e303f090091fa35bc8e080a3f254c90c02958d0927f85280f03c0a7dcd705b839360d025e9f708a7eb99d1654fbf688b7e9
-89d06fab38bdc939c5d8ff8021209dc7e5409f7c31b0f1ea7568027c42240b6f8412136103ef45848a189ef176ae0c1f7569
-f0398e14aea1839f219336f84b55e794e1f816fc9133f7a41e21c2a4f40547c2c4409a130868474e6c06dce7f4663168fc53
-48b11d79bb0e7f8166610a613e21b408c57faca4c0e1e27ab60c29abd22b025c216bf1d73d7e0e27653991943ee3b8fe8725
-c36c090f4db5d8b36e415207b21886ddd4efb1f603fe22eb0f7d71d327e849430855917832cc17b990e8590a4f14fc3e65df
-fabf79d60232
+7486cf04f68f900a442031c08b37ac1f2069e579885bfa48d684a6fb7579f638dee50fbd2b83ccba24ac13fa4c2595da91a8
+0fb4f786356e7d84b61cfe402a67b16d260bae7af389f57665e02ac3ce2337f338a780009617b84cc95ee4cf716b482506b1
+92f633e00fd64fadeeb6788c8c3a97acd3e7de6d2b7dfbaaa33d4d3c1651241700dc278c03dfac6272fef9441ba873f33570
+445445cca59ca116b0059d338143079c1e7ea5d28ebfd470d95c1dc158c609159e96e3ff5f47cee1e2f2f8c16de37a92daf4
+7b4c9c44b89e7a5501ddd96ae3c359feef16f42939221217ea673105d0ecba3fca477aec383ec54f2443fcd5b17219452ac5
+9e34a47f202a
