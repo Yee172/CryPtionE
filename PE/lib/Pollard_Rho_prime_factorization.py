@@ -49,3 +49,25 @@ def find_maximum_prime_factor(n):
 
     find_maximum_prime_factor_dfs(n)
     return maximum_prime_factor[0]
+
+
+def find_minimum_prime_factor(n):
+    minimum_prime_factor = [n]
+
+    def find_minimum_prime_factor_dfs(n):
+        if n == 1:
+            return
+        if Miller_Rabin_primality_test(n):
+            if n < minimum_prime_factor[0]:
+                minimum_prime_factor[0] = n
+            return
+        p = n
+        while p == n:
+            p = Pollard_Rho_prime_factorization(n)
+        while not n % p:
+            n //= p
+        find_minimum_prime_factor_dfs(p)
+        find_minimum_prime_factor_dfs(n)
+
+    find_minimum_prime_factor_dfs(n)
+    return minimum_prime_factor[0]
