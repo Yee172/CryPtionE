@@ -71,3 +71,36 @@ def find_minimum_prime_factor(n):
 
     find_minimum_prime_factor_dfs(n)
     return minimum_prime_factor[0]
+
+
+def prime_factorization(n):
+    prime_factors = []
+
+    def prime_factorization_dfs(n):
+        if n == 1:
+            return
+        if Miller_Rabin_primality_test(n):
+            prime_factors.append(n)
+            return
+        p = n
+        while p == n:
+            p = Pollard_Rho_prime_factorization(n)
+        prime_factorization_dfs(p)
+        prime_factorization_dfs(n // p)
+
+    prime_factorization_dfs(n)
+    if not prime_factors:
+        return []
+    prime_factors.sort()
+    p = prime_factors[0]
+    p_counter = 0
+    result = []
+    for q in prime_factors:
+        if q == p:
+            p_counter += 1
+        else:
+            result.append((p, p_counter))
+            p = q
+            p_counter = 1
+    result.append((p, p_counter))
+    return result
