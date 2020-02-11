@@ -1,4 +1,4 @@
-__all__ = ['Matrix', 'generate_matrix_class']
+__all__ = ['Matrix', 'generate_fixex_matrix_class']
 
 
 class Matrix:
