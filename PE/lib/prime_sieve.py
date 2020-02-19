@@ -71,6 +71,9 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
 
         return ()
 
+    if upper_bound < 2:
+        raise Exception('Too small upper bound for prime sieve')
+
     if segment_prime_sieve:
         if raw_is_prime:
             print('Warning: raw_is_prime would be ignored when using segment prime sieve')
@@ -196,6 +199,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             if with_divisor_number:
                 divisor_number = [2] * upper_bound
                 divisor_number[0] = 0
+                divisor_number[1] = 1
 
                 def divisor_number_part_0(y, i):
                     divisor_number[y] = divisor_number[i] * 2
