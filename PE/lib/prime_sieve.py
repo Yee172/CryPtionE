@@ -27,6 +27,12 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             with_divisor_number {bool} -- when only_prime is False, this argument determines whether
                                           return the divisor number of each number under
                                           upper_bound (default: {False})
+            with_minimum_factor_power_summation {bool} -- when only_prime is False, this argument determines whether
+                                                          return the summation of minimum factor of each number
+                                                          up to its maximum power under upper_bound (default: {False})
+            with_divisor_summation {bool} -- when only_prime is False, this argument determines whether
+                                             return the divisor summation of each number under
+                                             upper_bound (default: {False})
             with_prime_factor_number {bool} -- when only_prime is False, this argument determines whether
                                                return the prime factor number of each number under
                                                upper_bound (default: {False})
@@ -60,6 +66,8 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
     with_minimum_factor_time = kwargs.get('with_minimum_factor_time', False)
     with_maximum_prime_factor = kwargs.get('with_maximum_prime_factor', False)
     with_divisor_number = kwargs.get('with_divisor_number', False)
+    with_minimum_factor_power_summation = kwargs.get('with_minimum_factor_power_summation', False)
+    with_divisor_summation = kwargs.get('with_divisor_summation', False)
     with_prime_factor_number = kwargs.get('with_prime_factor_number', False)
     distinct_prime_factor = kwargs.get('distinct_prime_factor', True)
     segment_prime_sieve = kwargs.get('segment_prime_sieve', False)
@@ -87,6 +95,10 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             print('Warning: with_maximum_prime_factor would be ignored when using segment prime sieve')
         if with_divisor_number:
             print('Warning: with_divisor_number would be ignored when using segment prime sieve')
+        if with_minimum_factor_power_summation:
+            print('Warning: with_minimum_factor_power_summation would be ignored when using segment prime sieve')
+        if with_divisor_summation:
+            print('Warning: with_divisor_summation would be ignored when using segment prime sieve')
         if with_prime_factor_number:
             print('Warning: with_prime_factor_number would be ignored when using segment prime sieve')
 
@@ -138,7 +150,14 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if info:
             print('Sieving prime numbers below {}'.format(upper_bound))
 
-        if with_minimum_factor or with_minimum_factor_time or with_maximum_prime_factor or with_divisor_number or with_prime_factor_number:
+        if with_minimum_factor or \
+           with_minimum_factor_time or \
+           with_maximum_prime_factor or \
+           with_divisor_number or \
+           with_prime_factor_number or \
+           with_minimum_factor_power_summation or \
+           with_divisor_summation:
+
             if info:
                 print('Using the sieve of Euler in normal way')
 
@@ -146,7 +165,11 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             is_prime = [True] * upper_bound
             is_prime[0] = False
             is_prime[1] = False
-            if with_minimum_factor or (with_prime_factor_number and distinct_prime_factor):
+            if with_minimum_factor or \
+               (with_prime_factor_number and distinct_prime_factor) or \
+               with_minimum_factor_power_summation or \
+               with_divisor_summation:
+
                 minimum_factor = [1] * upper_bound
                 minimum_factor[0] = 0
 
@@ -215,6 +238,54 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                 def divisor_number_part_1(*args, **kwargs):
                     pass
 
+            if with_minimum_factor_power_summation or with_divisor_summation:
+                minimum_factor_power_summation = [1] * upper_bound
+                minimum_factor_power_summation[0] = 0
+                minimum_factor_power_summation[1] = 0
+                
+                def minimum_factor_power_summation_part_0(i):
+                    minimum_factor_power_summation[i] = i + 1
+
+                def minimum_factor_power_summation_part_1(y, x):
+                    minimum_factor_power_summation[y] = x + 1
+
+                def minimum_factor_power_summation_part_2(y, i):
+                    minimum_factor_power_summation[y] = minimum_factor_power_summation[i] * minimum_factor[i] + 1
+
+            else:
+                def minimum_factor_power_summation_part_0(*args, **kwargs):
+                    pass
+
+                def minimum_factor_power_summation_part_1(*args, **kwargs):
+                    pass
+
+                def minimum_factor_power_summation_part_2(*args, **kwargs):
+                    pass
+
+            if with_divisor_summation:
+                divisor_summation = [1] * upper_bound
+                divisor_summation[0] = 0
+
+                def divisor_summation_part_0(i):
+                    divisor_summation[i] = i + 1
+
+                def divisor_summation_part_1(y, i, x):
+                    divisor_summation[y] = divisor_summation[i] * divisor_summation[x]
+
+                def divisor_summation_part_2(y, i):
+                    divisor_summation[y] = divisor_summation[i] // minimum_factor_power_summation[i] * minimum_factor_power_summation[y]
+
+            else:
+
+                def divisor_summation_part_0(*args, **kwargs):
+                    pass
+
+                def divisor_summation_part_1(*args, **kwargs):
+                    pass
+
+                def divisor_summation_part_2(*args, **kwargs):
+                    pass
+
             if with_prime_factor_number:
                 prime_factor_number = [1] * upper_bound
                 prime_factor_number[0] = 0
@@ -237,6 +308,8 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                     prime.append(i)
                     minimum_factor_part_0(i)
                     maximum_prime_factor_part_0(i)
+                    minimum_factor_power_summation_part_0(i)
+                    divisor_summation_part_0(i)
                 for x in prime:
                     y = i * x
                     if y >= upper_bound:
@@ -246,9 +319,13 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
                     maximum_prime_factor_part_1(y, i)
                     divisor_number_part_0(y, i)
                     prime_factor_number_part_0(y, i)
+                    minimum_factor_power_summation_part_1(y, x)
+                    divisor_summation_part_1(y, i, x)
                     if not i % x:
                         minimum_factor_time_part_0(y, i)
                         divisor_number_part_1(y, i)
+                        minimum_factor_power_summation_part_2(y, i)
+                        divisor_summation_part_2(y, i)
                         break
 
         else:
@@ -325,10 +402,25 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             return_list.append(maximum_prime_factor)
         if with_divisor_number:
             return_list.append(divisor_number)
+        if with_minimum_factor_power_summation:
+            return_list.append(minimum_factor_power_summation)
+        if with_divisor_summation:
+            return_list.append(divisor_summation)
         if with_prime_factor_number:
             return_list.append(prime_factor_number)
-        if not (function_is_prime or with_minimum_factor or with_minimum_factor_time or with_maximum_prime_factor or with_divisor_number or with_prime_factor_number):
+
+        if not (function_is_prime or \
+                with_minimum_factor or \
+                with_minimum_factor_time or \
+                with_maximum_prime_factor or \
+                with_divisor_number or \
+                with_minimum_factor_power_summation or \
+                with_divisor_summation or \
+                with_prime_factor_number):
+
             return_list.append(is_prime)
+
         if not without_prime:
             return_list.append(prime)
+
         return tuple(return_list) if len(return_list) > 1 else return_list[0]
