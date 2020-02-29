@@ -1,0 +1,63 @@
+# A train is used to transport four carriages in the order:
+# ABCD. However, sometimes when the train arrives to collect
+# the carriages they are not in the correct order.
+# To rearrange the carriages they are all shunted on to a
+# large rotating turntable. After the carriages are uncoupled
+# at a specific point the train moves off the turntable
+# pulling the carriages still attached with it. The remaining
+# carriages are rotated 180 degrees. All of the carriages are
+# then rejoined and this process is repeated as often as
+# necessary in order to obtain the least number of uses of
+# the turntable.
+# Some arrangements, such as ADCB, can be solved easily: the
+# carriages are separated between A and D, and after DCB are
+# rotated the correct order has been achieved.
+# However, Simple Simon, the train driver, is not known for
+# his efficiency, so he always solves the problem by initially
+# getting carriage A in the correct place, then carriage B,
+# and so on.
+# Using four carriages, the worst possible arrangements for
+# Simon, which we shall call maximix arrangements, are DACB
+# and DBAC; each requiring him five rotations (although,
+# using the most efficient approach, they could be solved
+# using just three rotations).
+# It can be verified that there are 24 maximix arrangements
+# for six carriages, of which the tenth lexicographic maximix
+# arrangement is DFAECB.
+# Find the 2011th lexicographic maximix arrangement for
+# eleven carriages.
+# ----------------------------------------------------
+# Analysis: brute force
+
+322ad289cc376f75893b384714887369d54a1e6138e5b0e7b80dae6710dfef0b401ca1e2830ae5d1a0e361cb2f6dfc81bb78
+9848926eb543b0ba9292cd7ddf7b1572a7bed93792687a80c6accb1cf76de8314841bc7432a9adedd8151b295bae865cef5e
+48f5b83d3b28d248b0f6e432b84433af3f02e858ec31498f72f298165adaeae9913275f7b4d8b919b538da7f6ea045dc2a6f
+9137581464bee850bfdb187cb86048590845a3c5fb09a6cada95823c5010d44d16de3dfe314732ca0d525f17b6a4e3198ce6
+e2373b83ba837304a4666454e1aa154ce313437150132c500e8037d01dff7f7c2cab51f0b92740f9aebb738731e4b81207e6
+fd0f5c3ffdc77c2d2d7c85843519dd5aa830d02f4715e6552dc81afcfa3dcff1bf1a27522e4006478fa0fed62d53452e9e2f
+76a19c63ba22ee1fd1b22982cd912b17667dd5528ad84cfc57dd32b294435abcb3523232ec37d69c4092faed3003850c6384
+4b3108eb9d3d3412ccdeb7bf2ce1f4bcfafd2f2f93dc077ddfe0203684d93a83987c68c3b3e426b980e6ed8391a315116e06
+efa22ac4f8d5fc995b54a4b9d464770852a73893a1cf3c4dcc6e08c9b6d9053c0a8f604bce8d0e73e56ecebaf35d7c1a3a08
+320f6eaafa1c69e6aa7a5a32dd396a847b878cb52282d64f2ede17fefce5fa7fe1eab313a6eb45ff54b5e989b79323a2934e
+b3675ab1b2ae2ebc110daa451214faf27c2d2d7c109727bc174b1980cdcbe0ae64709d3dde08e300546e2dc05ab1ebfbda03
+0573295c8976487165d8ce1f5d52ba7a5b7a78253186a98df5ae19db88320749df9e50ae92ccb0659611705e6fea1b0a7718
+89d0fcc2d4dafb052ff36ef25c00f9cba4d24b1ff78d8ce3c6ee3fefd705a7ea8d8e686627a5881055c1c87742689f90c305
+16eadaa3c7039d8c2729da0991a0acf77734048d509876d19c2473951e8d93716abb67c0b50c0f7fc6f90d45647cf5eb8377
+70281e6eb84e7c915e899b386ac78e7707bf85c919f7e0db0d4d55a5851923b153fec5bb5f7c8bb868682679aa45aced5bd3
+c35f00fc8fd56ad42bb8b058c00514bfd6512340a077b4bf9edd7c2d2d7c40eb75528c9ae8d5ad0c75056a4722dcdb72ff39
+cf6e38901c762bc35bac212b753c6cda133c7dcf2249f3f4415c22edd6418539ce4bdce25fd086499688d20ebba6e147f50d
+35df4a71dfd59fc6e15ee758c672576cbb6276e29e133caa72f2353bc01dec801e7cfff6ca80e98de96092cb0583eddbe417
+3bdfde71a87fca70683abf7a852c1ca74ae3629d0c220ccb168c7ac3730c6ea457bdb726c84dd21643b88f90e03d73ea5fb2
+dfbb9ce7500c799b1a548e4af7a24d6da66f4ca81d3a65b9ddfafe52c14fb88706a172606c3ce5ce041551fa68f761cc657d
+784ca78fe771f640d89d82bf18481af373c3ef3738b5d1e13131ea0b6eb78da42f20171a7c2d2d7c375e88bc70390433af04
+76d63250fc30ce7f5899289bc9b991d0024578c5b09c47aa1ce3cc6d61cffd17a5c17359a1735cd37ef7cdd1995cae0970b1
+1b25d934c23a82544e19470ad36b3bad0eb3a2f0852dae3374cd9d55fa62a69f744ddc1d7491c411f46f7136af7ab009b5f8
+88d4de3aea2592a5ea00c14c115560a00703a175da2769cefab594957a4c5ff5b66887826149fae3fcf34e256b42b8fb9c03
+d62151787c9098b0494461f59921d60b2423de489da4dc0e25b6640515dac93ee23c1566b2721665cc56153ac7d2e85789ae
+36372bc279ffa207d04f1ffa947b495994d0966a221905e23512ea3fa281f2544e99bc80dee5beb6978bdc1ccdab7c2d2d7c
+132a6858c91d13907a56113d99c7a7f3fd7e2a7b971434394096226cbeee7c2d416679d5b50a875678c5c44521526cfd48d6
+c325430e7140a62ef3c902bd97ea0335f71f8522102b07579d23bbc67befc4ef84bc9ab1691396e713edc32965d088eeca25
+a7179a2ef9b6b45794ca41fee50ab71f453629f6dffd1a5133a24101d315cdf9e5ac2924ce9359ed206da9a0ecb370ae7fe7
+85cef410a92f80a894215fc6e1c823e5eeb517a58415830bc7c5e96f4382a52ef40644d9f27f82d61cbdfe15a27f4ada7f11
+82a0a4964b7ad78e07a5de24be170dcacbaf391d3ba78b00e582cae35ce74d90aa76b922bac395ab43b200a0f8ba63772aaa
+7479f5e1b5e0
