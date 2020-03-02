@@ -109,11 +109,11 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
         if info:
             print('Sieving prime numbers at range [{}, {})'.format(lower_bound, upper_bound))
 
-        _prime = prime_sieve(int(upper_bound ** .5), only_prime=True, info=info)
+        _prime = prime_sieve(int(upper_bound ** .5) + 1, only_prime=True, info=info)
 
         forced_odd = lambda x: x | 1
         _lower_bound = forced_odd(lower_bound)
-        length = upper_bound - _lower_bound >> 1
+        length = upper_bound - _lower_bound + 1 >> 1
 
         try:
             if info:
@@ -125,7 +125,7 @@ def prime_sieve(upper_bound=10 ** 7, only_prime=True, info=True, **kwargs):
             for p in _prime[1:]:
                 is_prime[forced_odd((_lower_bound + p - 1) // p) * p - _lower_bound >> 1::p] = 0
             prime = [i * 2 + _lower_bound for i in is_prime.search(bitarray([1]))]
-            
+
         except:
             if info:
                 print('Something was wrong with bitarray, using the segment prime sieve in normal way')
