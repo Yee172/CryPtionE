@@ -1,0 +1,31 @@
+# For fixed integers a, b, c, define the crazy function F(n)
+# as follows:
+#    F(n) = n - c for all n > b
+#    F(n) = F(a + F(a + F(a + F(a + n)))) for all n \leq b.
+# Also, define S(a, b, c) = \sum_{n = 0}^{b} F(n).
+# Find the last 9 digits of S(21^{7}, 7^{21}, 12^{7}).
+# ----------------------------------------------------
+# Analysis: brute force
+#           Hint: when a > c, then we have
+#                 F(b) = b + 4 a - 4 c
+#                 F(b - a) = b + 7 a - 7 c
+#                 F(b - 2 a) = b + 11 a - 11 c
+#                 ......
+#                 F(b - i) = F(b) - i, 0 \leq i < a
+
+6d0f223549a6023805257d4fb0f59608c05ca16cf963332d1653f2efa048ed9cc95f8329c73ae0164176d353de06017550f5
+5b89dc44d39e13809258703cd35883e2d7c2de1ca0a4b2150ceb0d747d3b2037e9eb7953c4d34ed3cffd9e6db7ace7e8bf27
+17716406b3a576e1d0c1efee81ce6fc124da15a59ebb49589457591ddda7747e584fc9d45f30275dd4fc265da546a41c2c01
+9dd51bd5d060d706fcf1eaa6950a85b3c5877307074d560879da3b039126a3646e44431b640590aee089d534934bc7eea3cb
+a9b799662d4ec5f0a458886988a982876c6d19a5fb9c6e936a88b38a2b81966dd9d59e88ff74ff7caca042b59ac355601e76
+a9fb695293d27c2d2d7c958a7912ae7e9574b510ebb5302cef66d54c517d146b7236a593ddfe3ebf7825d77939165d35aa7c
+dd745c7e4ce33d2c2e85a15f4c63d0842e3635690c9f02bece506b79f356b72ea9d53e00bd0a925691d6827672ba939a569b
+2b2254ea5f2f271afaab85b9a2a096fea3def6973775d7d4db64ca5fcc625317ed631b6c08063701ca8150c055449d59d0ec
+2af417f19a7153d1a4dfb3faf8223dc10ece70633120fa38b592b732268f3aa0028483348e0870e7dd41942575351764f44f
+730c1cd580521f9868abf6045b00a812f4ad9705b1da5539eb1092a98bf19c6ce5bf0505b6f4d426bf2dd8c27ceabbd2c892
+69613f922d51c29183bf16b0e7e42c1b7c2d2d7c8227e6d7b120eabd219fb388479574c44ef8f50753d91cb6b78ac29062c1
+a5ccefa1ce5f22db27eba0a8bea06daec707b86af63d8a2d92f0f80009a636792963d92ee21d360fee4c1f394279f36c4ba9
+149ee00accaec3f8d13211b78c728e9072293ef62b766ed773875e317edab46836dbcd814008b47254cfe29172f29c4fea8e
+fec0a166328984cefa106dee3fb4d6bd48941aa374157dc29fa6f1828dbbd7c8fe41fd2b3bf62f1fbb548ca7dd7d51c67df9
+c2ebcfc9555787be339db81e7c2f4cdd7064ffcae87b086eb21b23f62c2cbac19f39355a0ea0718d6aff9c1f7c0527044c5e
+d6e6a25d2cc2ca2e1e8b0a772b34c11e320e1181827311cb01d4
