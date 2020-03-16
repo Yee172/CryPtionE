@@ -1,4 +1,4 @@
-__all__ = ['Matrix', 'generate_fixex_matrix_class']
+__all__ = ['Matrix', 'generate_fixed_matrix_class']
 
 
 class Matrix:
@@ -17,7 +17,7 @@ class Matrix:
             self.__init__(row_number, column_number, initial_value, precision)
 
 
-def generate_fixex_matrix_class(**kwargs):
+def generate_fixed_matrix_class(**kwargs):
     modulo = kwargs.get('modulo', 0)
     precision = kwargs.get('precision', 1e-8)
     assert(isinstance(modulo, int) and modulo >= 0)
