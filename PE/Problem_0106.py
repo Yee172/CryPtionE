@@ -17,21 +17,21 @@
 # Analysis: brute force
 #           Hint: only the equal-size pair need to be tested
 #                 #(equal-size pair) = \sum_{i = 1}^{\left \lfloor \frac{n}{2} \right \rfloor} \frac{\binom{n}{i} \binom{n - i}{i}}{2}
-#                 However, any pairs satisfie B_{j} < C_{j} for all j or B_{j} > C_{j} for all j are surely satisfie the first rule
+#                 However, any pairs satisfie B_{j} < C_{j} for all j or B_{j} > C_{j} for all j are surely satisfy the first rule
 #                 WLOG, we say B_{j} < C_{j} for all j, then it means in total (2 i) sorted elements,
 #                 B_{j} means push into stack operation, and C_{j} means pop out stack operation,
-#                 which implies that #(the combinations satisfie this condition) = Catalan(i) for total (2 i) sorted elements
+#                 which implies that #(the combinations satisfy this condition) = Catalan(i) for total (2 i) sorted elements
 #                 As a result, we need to minus \sum_{i = 1}^{\left \lfloor \frac{n}{2} \right \rfloor} \frac{\binom{n}{2 i} \binom{2 i}{i}}{i + 1}
 #                 from #(equal-size pair), since these tests are not necessary
 
-3e44951cc5ac2da0d60f79c56619478599a03b7da1436b835483b6dee99a69c89a6bbc89ac42ef1a8c6520855721b053d6a6
-ccf823eda9d26724e08808a70cc95b939bc13c7be60103365090a33cc2cd902e5eaa8561a6626091f375438a4f6f51c01836
-b1be710f0ccbe577c8d77889151ca5e319d73bd1ef7b57130fb261d9d2d726e3d5ae3ef86f820d11308dd90a0b3a440d6273
-001b169cd520dfe9d3983912eef8dc2d1bce5ddb433a8fcadbe4ead1e9cb7be7003a7383c5045c735d527bcd26fdf585578a
-0f5f0ff723cc50325d2df2a1cbf278157f1dbf3b0af616d49f4b7e866366392ae9aa06c688c3c8b6ed25c0703a06ea573cd3
-f883e323d54f7c2d2d7c6fe927aa8155ba497142cea44feaa085d5445024ba318793d8aac51e2e97aa02ab934084aeb24314
-d7bd7179366a45536a7bd8b6819428dc7ace42815da12cd5e1240f9e393b7a842a845c4f336fffd6d723ec1f9fdfa67242df
-1c5c4c1b5f5d6045cd387490960b3e78324a2bc33ae24e01cb5dd8e40b4be196ad4bfc1bf0c7ca3d46e0d478784ffedf5914
-dfa0f89066f9bdfae23aa5e09fadcf999e2bf98e918cc14a9526dd80a2c74ef7ac2c0cf91b1617bf2124d8f93d1833f079c8
-a9d4848bf4c96face631ab4653422c35234d392e899f3fa7eec276a9fde49fb3b8a973dd9b1b4d8650c5d51629b9d88c6e7e
-b3db6129ecbd3b724c8cd39c0e4bef63
+6fa859ae04ace5cc45e940c68908958223a1a11784981761babe2ebf6bb936e96b18d50600081a6272c99d55d9e860cf5205
+6c1eb07f484f7cddedeb693087a38d7a6f033755de3aa5d0851bdeab00dff7b832527718f9c2ffcaf9e11c4e391201822415
+cf06b33894043fa40d29142e8663ca7f5ec331fe8f89069bf681f6a92432267051adf0b7f60e88337d829df4b2c9316e7ef0
+af59b49e8622c2afb11f081da256476b282c0e7012aa7b226e78973867ce5b2cdef753457be3405309ceb11fa73f1bf23d28
+6757bc79657ccbad6b6e2900c8ee7e2a0b083e8c49ca40028203069f93a5e8a53271fcc585128088fd9f0926dfee7fb0241b
+9440771791f57c2d2d7c00a8e54055bdfc023f2e1a7cdca5b28f19a9729369b8363b5c96a2481fdc166279d0fabf70940e2f
+321ff38556c78ea014eb5e5be16c4b5f65dc513802b7b3f8c8cfbc092277dc9320e59008147bd8278a324294aa7b0b605bde
+ff0eda71f6d8d33e2c4c8d38f485af131d6ad08bbbb3a6ae881bbdffe2ae54c33eb53a68e540771e6e7f2fcf448194d0fe17
+2c2694018ccbc5530aeb23b97bd7b7f019b37c6e2747772fef3a88c329c74ef262b2f397ffe74e0ea23546fc794bc3beeb51
+a7ebf4c3011054c700df211609566e02cf7e74cd62c48c51897a6904783d60731f49152448425c8fb92f9d482fa0b53a6c3b
+d28c62ddab92bed86588a72a2fc720ba
