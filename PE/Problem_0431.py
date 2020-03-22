@@ -1,0 +1,88 @@
+# Fred the farmer arranges to have a new storage silo installed
+# on his farm and having an obsession for all things square he
+# is absolutely devastated when he discovers that it is circular.
+# Quentin, the representative from the company that installed
+# the silo, explains that they only manufacture cylindrical silos,
+# but he points out that it is resting on a square base. Fred is
+# not amused and insists that it is removed from his property.
+# Quick thinking Quentin explains that when granular materials
+# are delivered from above a conical slope is formed and the
+# natural angle made with the horizontal is called the angle
+# of repose. For example if the angle of repose, \alpha = 30
+# degrees, and grain is delivered at the centre of the silo
+# then a perfect cone will form towards the top of the cylinder.
+# In the case of this silo, which has a diameter of 6 m, the amount
+# of space wasted would be approximately 32.648388556 m^{3}.
+# However, if grain is delivered at a point on the top which has
+# a horizontal distance of x metres from the centre then a cone
+# with a strangely curved and sloping base is formed.
+# We shall let the amount of space wasted in cubic metres be
+# given by V(x). If x = 1.114785284, which happens to have
+# three squared decimal places, then the amount of space wasted,
+# V(1.114785284) \approx 36. Given the range of possible
+# solutions to this problem there is exactly one other option:
+# V(2.511167869) \approx 49. It would be like knowing that
+# the square is king of the silo, sitting in splendid glory
+# on top of your grain.
+# Fred's eyes light up with delight at this elegant resolution,
+# but on closer inspection of Quentin's drawings and calculations
+# his happiness turns to despondency once more. Fred points out
+# to Quentin that it's the radius of the silo that is 6 metres,
+# not the diameter, and the angle of repose for his grain is 40
+# degrees. However, if Quentin can find a set of solutions for
+# this particular silo then he will be more than happy to keep it.
+# If Quick thinking Quentin is to satisfy frustratingly fussy
+# Fred the farmer's appetite for all things square then determine
+# the values of x for all possible square space wastage options
+# and calculate \sum x correct to 9 decimal places.
+# ----------------------------------------------------
+# Analysis: adaptive Simpson integral
+#           Hint: just integral from top to bottom
+
+32d668e5c723f5142b1338e5257cdd26ecde0b8bdaeb924c5a622c0e6481f4f7d603f892101ca6d2ba037073dd2823b992ff
+b8a1cff2a806bb4df237a8b93061b194c51151e9a0f4768e6ed3fb0e1bd870290bc04c505b8d056b896fd24d92c269128857
+5cb71fa44a5b20886648da93ce7c295c269193bb800604527fb54e9b6833695f2cf745b832e847eccf733daca18157d42cfc
+bb5ff7d31951dc6ce484297ae4d3bb1c2738d49260f6803b0ef2a8163c8a46662c2dc8a909878285f5dccc6e8856a76913a0
+c65bc4bf34d9ddba05baaa5b06f05d110070a3d8a850fda2438c622c1627b51fc84f6879b70468e1131f052b5b903422a9d9
+360b97b260097c2d2d7c95a187418246e86ab17c7ef3ddb4b5a789617fb1e498528dfd644a2b891fb6c57585925bb707c792
+31e140a76088edd4f29546c9d30e79723a59b8745c4f13d577042c5c1306ecde088e83140f8b2688ea71e927247bcbe0a2d7
+4dd83796c5c8fede439b28942e9be1a3be22365e46050d385cfa7d83465d8d86d3c561a653d8b25eff11f53d0fc34196e512
+f43c4a0a66fb8610ed440c6be14894b8042e0ec10af3ff3bd761dfbc2da1de902d9302413ee29f0183092e4c0e1b2de6a850
+e77c68caf089733cedb4494802be6f8ff858584c7a545a47c8510532a291e29f854fc10335f4bf3cc3177df60ca18e02077d
+2dbc3a95cefd31173ced006e0a724a337c2d2d7c124c5ac2d446dab8d3a45cd43a19038281bed294ea59ff447af9ad1eb69c
+1b32d44c7ab2117de74540b59b603c3ec9137fb3cf319afe6ecaec45dd39d00b4e7828c6e0c0194f2bdafb7ce10eab119eb5
+c9fa79347fad5eab29410a9fc578242084268bfe8f308cfbc35a8c2b350cfb53ccee0dbb3f5ba6ee074164650ea6136190ce
+23e586ddf1f27789d10a05b690b6c718037e8661b9a72ed1ee3987113a559529d96a918e504c16f5bb63768da84b48086427
+d758d41a42dacdba959cfcf93621075a87ae60dd87570bc202783d8e1b56c2b32b79b2a8f2a3ac2865d1b7299d7d977f6484
+ed1f5af84f112777b9616d3bf800e2b00579b990a700356069e07c2d2d7c8cc46b8f143c8004d68d3d01aec29a064c35b6bd
+b02054e9669224cce37da2c9a30ff4dce05e15ba31a4caa91b355da380b552c9de9d6fbcb620904bf1b445a7367f8176bffa
+a0188e0204f870e150faaddbda4cd9c0f3e14c17b3050b69a92948eaf9398ddd2b154f17fa80c3704fac3e9345ed0bd45507
+16b1b6796539ab73351eab7708bf7ef05595f37246a3a417f80ca53acc1434c5eb51a762ae2770036f8cd1c6d6aeeabf99f9
+17f7ccdd8f63b25c1ed4796754c3a2ec72ebed80ce28e6761deba576eb9d34636db8d6a9fe660b0387dfb00806c50e7b33f8
+07e9da307ebf3bf6d86800c374a6ad058541e097639d5bbf93e1b2f8c2b5f898fcb03b1d7c2d2d7c50771106740df9a4381a
+2d8349449c59ff0d52d047891a3744c545ce3d11660b5e54cd03b1d7631a1242773939176f6884d97efe77f76bfa74e5bb35
+e65f8517bb4c9bff7010bde5e5b73b707b161136c40660dae497eb5d838d4b0d563ccadba64815c76f3f2bc5e318e130da44
+1aaa5434f191867505819d97d47a4c11d94f7d4fbe98723c5dd53ee7df494e7aaf86226e074d08c35fe3ecb8c6127bd86349
+9b6364cb4ef271fe6ca967b2a8a082682546cc2d8987ab25c476291119bc3505d2a0cd6b7c693bfbe58048917265ddffccdd
+179a3b764ee09617b0b281f76aeb134d8593fe6fb4da0eacfd95b87b2d69ccbb053b27683c978022781e915a93117c2d2d7c
+b5459ab47f72cd74565446952981d1fadbeacad6f36888b37e7155ebb671440ed9018e637662bbdfa7f7508a40f81b7a4c30
+bfa3ac909757b6e84b4462bd6eca6c6c827da32f30d0cca9633b4741de80832ead4d09973f7a6c47befa28c687345815e3dd
+071acbf6cd3f18e7891f2aee0d973e5ca40dc93039283a022113aaf8ba48e0c358689acd12472048fe2c1bcc5d7d001d783d
+a60cf815820863821d5b4645699bd8280d967047bc8f066a5cc5938a27b823bc39444839152c186e37c3a5f186d28fdc85ec
+4afc3f036776142d6c506b22989cefdef57224dc67995013b796ea0e3c0764e9ed54fbb424f06870accd5e5318b01f6a1c0c
+dc13ec49ab507c2d2d7c7a8cb07812308f901825b6e4f5e5c76968fe636b0762cc2bb8683263e8825768ba621275b09dde8b
+3553b2d424f76b97fdb75df61b590d7d3473436451bab0745e57c9f04898b55c6ee6802b165a4f221b7fd875c169e3ff32a8
+6c453dd36a27e8f08b1b74bbaca561e8b71603de651dda292d456ae38165559476a33c91f25e1be41d88b92eb26f7d88ded6
+da1c59cefefd0d0c3666bfde158c8600c05ab65a1fe4fe9cfd81ea8ad21cbc1bf2943755251c2f88f9f91df55a193ca7a563
+b2a4e5ff954eba649f0399969e3310c8740edb4928a3bebd9c5a1a72abd978a50c8b45dfea23f1a828dc9abfaeb2573249b2
+a266d9bc19bcb311c95043ce70e431e07c2d2d7ccba892458d8e17a4b2e7bf7f1e655689d17fc7baf65436a6817595b10d91
+f9a84da7b57938b8878c0fbd347a6a7f9dc664f6ae0dc2cd17b971a8ee62d0a5500d817a887d356984abae363097c08745b1
+50ad813392870ac465aca69fce2d4443095c97517b5d11a7a8128837c00e4a43cd0cc2e9ee2d18dcf807930890119a40580c
+d2e50fa07e5d3093cefa2ba712c556127b8ddf01c5becfcd005184f940e0191cafcc52b66018daf7dc00f6fe35b1555b446c
+7cb634fa09ca7af083390cb99e7199fa5ab1ee08fce22378c130edde181ca5685c2af50dcd4a2992366e8d48260592a776c1
+37c8f8a722d103241d47cc17e57b4c093a03278ad6b9e86d61047c2d2d7c4c7ff3a5c4dffcbd175f20d0c166f42616af9cd9
+c8fc10d00f734ed0f3e1bbefbc45a7b009dab31e2186efd8f77d2c3f20d5de8545e2b0e050180bce35660f30335a12259251
+beb2b7ae261ef5a362d4d821bdcc5b530682dbc6e91216614b4f9683470c4600635dbf8143eb86f5c2bf218ca9194ec5fcf6
+4049f7fb2678c0e02da0c1652a60bc779027e40e97fec4252c1167112f14292e71f24abeebb7949fb3eeb2d4c0817f58c923
+bb6e315877a5fc33d08a1fbef35ab619328e5dae275a4198f969e1f4d4b25027c5e68e2fea736bb1f1fcbeb71094a8d0be50
+64a0fdf4c940dfdcd32394c3998ce749150486e357855ab9dfcc333a89854df851c202a0
