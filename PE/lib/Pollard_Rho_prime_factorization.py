@@ -104,3 +104,22 @@ def prime_factorization(n):
             p_counter = 1
     result.append((p, p_counter))
     return result
+
+
+def get_phi(n):
+    assert(n > 0)
+    result = 1
+    for p, c in prime_factorization(n):
+        result *= (p - 1) * p ** (c - 1)
+    return result
+
+
+def get_mu(n):
+    assert(n > 0)
+    result = 1
+    for p, c in prime_factorization(n):
+        if c > 1:
+            result = 0
+            break
+        result *= -1
+    return result
