@@ -235,11 +235,11 @@ class MatrixPrototype:
         for i in range(self.row_number):
             result[i][i] = 1
         if exponent:
-            temporary = result * self
+            temporary = self
             while exponent:
                 if exponent & 1:
-                    result *= temporary
-                temporary *= temporary
+                    result = result * temporary
+                temporary = temporary * temporary
                 exponent >>= 1
         return result
 
