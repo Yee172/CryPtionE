@@ -10,8 +10,8 @@ def phi_summation(n=10 ** 11, return_single_value=True, info=True, **kwargs):
     f(n) = \\phi(n), g(n) = 1, h(n) = \\sum_{d | n} f(d) g(n / d) = n
     S(n) = \\sum_{i = 1}^{n} f(i)
 
-       \\sum_{i = 1}^{n} h(i) = \\sum_{i = 1}^{n} \\sum_{d | n} f(d) g(n / d)
-                              = \\sum_{i = 1}^{n} \\sum_{d | n} g(d) f(n / d)
+       \\sum_{i = 1}^{n} h(i) = \\sum_{i = 1}^{n} \\sum_{d | i} f(d) g(i / d)
+                              = \\sum_{i = 1}^{n} \\sum_{d | i} g(d) f(i / d)
                               = \\sum_{d = 1}^{n} g(d) \\sum_{i = 1}^{\\left \\lfloor n / d \\right \\rfloor} f(i)
                               = \\sum_{d = 1}^{n} S(\\left \\lfloor n / d \\right \\rfloor)
                               = S(n) + \\sum_{d = 2}^{n} S(\\left \\lfloor n / d \\right \\rfloor)
@@ -101,8 +101,8 @@ def i_phi_summation(n=10 ** 11, return_single_value=True, info=True, **kwargs):
     f(n) = n \\phi(n), g(n) = n, h(n) = \\sum_{d | n} f(d) g(n / d) = n \\sum_{d | n} \\phi(d) = n^{2}
     S(n) = \\sum_{i = 1}^{n} f(i)
 
-       \\sum_{i = 1}^{n} h(i) = \\sum_{i = 1}^{n} \\sum_{d | n} f(d) g(n / d)
-                              = \\sum_{i = 1}^{n} \\sum_{d | n} g(d) f(n / d)
+       \\sum_{i = 1}^{n} h(i) = \\sum_{i = 1}^{n} \\sum_{d | i} f(d) g(i / d)
+                              = \\sum_{i = 1}^{n} \\sum_{d | i} g(d) f(i / d)
                               = \\sum_{d = 1}^{n} g(d) \\sum_{i = 1}^{\\left \\lfloor n / d \\right \\rfloor} f(i)
                               = \\sum_{d = 1}^{n} d S(\\left \\lfloor n / d \\right \\rfloor)
                               = S(n) + \\sum_{d = 2}^{n} d S(\\left \\lfloor n / d \\right \\rfloor)
