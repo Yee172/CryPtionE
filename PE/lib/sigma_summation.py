@@ -50,8 +50,8 @@ def get_integer_power_summation_function(k, modulo=0):
 def sigma_summation(k, n, **kwargs):
     """Return the summation of the sigma_{k} function
     
-    \sum_{i = 1}^{n} \sigma_{k}(i)
-    = \sum_{d = 1}^{n} d^{k} \sum_{j = 1}^{\left \lfloor \frac{n}{d} \right \rfloor} f(d * j)
+    \\sum_{i = 1}^{n} \\sigma_{k}(i)
+    = \\sum_{d = 1}^{n} d^{k} \\sum_{j = 1}^{\\left \\lfloor \\frac{n}{d} \\right \\rfloor} f(d * j)
     , where f(x) = 1
     
     Arguments:
@@ -82,8 +82,8 @@ def sigma_summation(k, n, **kwargs):
 def sigma_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the sigma_{k} function
     
-      \sum_{i = 1}^{n} \sum_{j = 1}^{i} \sigma_{k}(j)
-    = \sum_{d = 1}^{n} d^{k} \sum_{j = 1}^{\left \lfloor \frac{n}{d} \right \rfloor} f(d * j)
+      \\sum_{i = 1}^{n} \\sum_{j = 1}^{i} \\sigma_{k}(j)
+    = \\sum_{d = 1}^{n} d^{k} \\sum_{j = 1}^{\\left \\lfloor \\frac{n}{d} \\right \\rfloor} f(d * j)
     , where f(x) = (n + 1 - x)
     
     Arguments:
@@ -121,9 +121,9 @@ def sigma_summation_summation(k, n, **kwargs):
 def sigma_summation_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the summation of the sigma_{k} function
     
-      \sum_{i = 1}^{n} \sum_{j = 1}^{i} \sum_{l = 1}^{j} \sigma_{k}(l)
-    = \sum_{d = 1}^{n} d^{k} \sum_{j = 1}^{\left \lfloor \frac{n}{d} \right \rfloor} f(d * j)
-    , where f(x) = \frac{(n + 2 - x) * (n + 1 - x)}{2}
+      \\sum_{i = 1}^{n} \\sum_{j = 1}^{i} \\sum_{l = 1}^{j} \\sigma_{k}(l)
+    = \\sum_{d = 1}^{n} d^{k} \\sum_{j = 1}^{\\left \\lfloor \\frac{n}{d} \\right \\rfloor} f(d * j)
+    , where f(x) = \\frac{(n + 2 - x) * (n + 1 - x)}{2}
     
     Arguments:
         k {int} -- the order of power
@@ -169,9 +169,9 @@ def sigma_summation_summation_summation(k, n, **kwargs):
 def sigma_summation_summation_summation_summation(k, n, **kwargs):
     """Return the summation of the summation of the summation of the summation of the sigma_{k} function
     
-      \sum_{i = 1}^{n} \sum_{j = 1}^{i} \sum_{l = 1}^{j} \sum_{m = 1}^{l} \sigma_{k}(m)
-    = \sum_{d = 1}^{n} d^{k} \sum_{j = 1}^{\left \lfloor \frac{n}{d} \right \rfloor} f(d * j)
-    , where f(x) = \frac{(n + 1 - x) * (n + 2 - x) * (2 * n + 3 - 2 * x)}{12} + \frac{(n + 2 - x) * (n + 1 - x)}{4}
+      \\sum_{i = 1}^{n} \\sum_{j = 1}^{i} \\sum_{l = 1}^{j} \\sum_{m = 1}^{l} \\sigma_{k}(m)
+    = \\sum_{d = 1}^{n} d^{k} \\sum_{j = 1}^{\\left \\lfloor \\frac{n}{d} \\right \\rfloor} f(d * j)
+    , where f(x) = \\frac{(n + 1 - x) * (n + 2 - x) * (2 * n + 3 - 2 * x)}{12} + \\frac{(n + 2 - x) * (n + 1 - x)}{4}
     
     Arguments:
         k {int} -- the order of power
