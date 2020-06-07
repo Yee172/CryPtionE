@@ -2,7 +2,7 @@ def integer_sqrt(n):
     """Integer square root of n
     
     Get the integer square root of n, i.e.
-    1. square_root(n) ** 2 \leq n
+    1. square_root(n) ** 2 \\leq n
     2. (square_root(n) + 1) ** 2 > n
     
     Arguments:
@@ -35,7 +35,7 @@ def integer_kth_root(n, k):
     """Integer kth root of n
     
     Get the integer kth root of n, i.e.
-    1. square_root(n) ** k \leq n
+    1. square_root(n) ** k \\leq n
     2. (square_root(n) + 1) ** k > n
     
     Arguments:
