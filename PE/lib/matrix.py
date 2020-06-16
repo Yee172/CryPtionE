@@ -252,6 +252,34 @@ class MatrixPrototype:
         result = sum(self[i][i] for i in range(self.row_number))
         return result
 
+    def latex_form(self, brackets='[]'):
+        result = ''
+        if brackets:
+            result += '\\left '
+            if brackets[0] == '{':
+                result += '\\{'
+            else:
+                result += brackets[0]
+            result += '\n'
+        result += '\\begin{matrix}\n'
+        for each_row in self.matrix:
+            result += ' & '.join(map(str, each_row)) + '\\\\\n'
+        result += '\\end{matrix}\n'
+        if brackets:
+            result += '\\right '
+            if brackets[1] == '}':
+                result += '\\}'
+            else:
+                result += brackets[1]
+        return result
+
+    def transpose(self):
+        result = self.__copy_without_content__()
+        result.row_number = self.column_number
+        result.column_number = self.row_number
+        result.matrix = list(map(list, zip(*self.matrix)))
+        return result
+
 
 class MatrixDecimal(MatrixPrototype):
     """General matrix
