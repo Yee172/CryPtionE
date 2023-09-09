@@ -106,6 +106,24 @@ def prime_factorization(n):
     return result
 
 
+def get_all_divisors(n):
+    all_divisors = [1]
+
+    for p, e in prime_factorization(n):
+        p_power = [1]
+        while e:
+            p_power.append(p_power[- 1] * p)
+            e -= 1
+        next_all_divisors = []
+        for a in all_divisors:
+            for b in p_power:
+                next_all_divisors.append(a * b)
+        all_divisors = next_all_divisors
+
+    all_divisors.sort()
+    return all_divisors
+
+
 def get_phi(n):
     assert(n > 0)
     result = 1
