@@ -1,0 +1,21 @@
+# We shall call a positive integer A an "Alexandrian integer",
+# if there exist integers p, q, r such that:
+#                 A = p \cdot q \cdot r
+#                          and
+# \frac{1}{A} = \frac{1}{p} + \frac{1}{q} + \frac{1}{r}.
+# Find the 150000th Alexandrian integer.
+# ----------------------------------------------------
+# Analysis: brute force
+#           Hint: https://oeis.org/A147811
+
+188cdd89f7f5472bed78ca664cc543317ea0bdabd94f2d493969d96b555c748a1625c23c0f2f2550747dc6e81c1222fedab0
+f480b8a74ba8d05b87ce3f528213fe1a6b06474f584ead7b7cea6e1918102538d235359d5eb59132702b30dc20a1ff02f3f0
+68905c7418b499460a72a19e7f1871563e7a65aaf859361072376ed1bd24303a78c405ff2c5a5a70faf44589e6bf3bc0d7d0
+02b89afb56a5083c2d23b070d5652ece01c9c1f91d72a9f459cb911a1f7b4d2604806e6867648d5884466c611a6d14abeecb
+9dab8b5585e1c2c258e58faf6b3b9120f155e3fa5bda59c813e32d620a3dac8bd9ee0d7a0330edda93ea40dce3d3a34e64df
+5cb265b5cd657c2d2d7c79d2f2afc8d123275ed6e2c331f286023e43ee62320203706189a444d2324fc662f473b3859256a7
+cafcdca7ddf7d5f9aa499bb04e4bf74cf36a901e00473dade71b09aab96e5c9a788d228ffb099a146047400d0c4b54b3bb92
+db49f1fb9cc16bb57653dccb03b9540dd8e1edd96adb3d11ebaef41eb67c0d761a766f6393064347b34adffb6f46454cf4ae
+1d9b14c5136abb749b858ae42266740b4c0eab3f0263d65dbdfb3014648fdde7bcc10c149921002aa07e629e145d81879dd4
+1fb88f9f0954dc1cd352ae3722afcf9d1386ef04fd9d15876c5da4717fb578e8cf079db9390463f47f17e7cc9fbc2ffa3a26
+899d3fc98d7c84b8a4ba12971d932b29
