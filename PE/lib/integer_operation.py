@@ -35,8 +35,8 @@ def integer_kth_root(n, k):
     """Integer kth root of n
     
     Get the integer kth root of n, i.e.
-    1. square_root(n) ** k \\leq n
-    2. (square_root(n) + 1) ** k > n
+    1. kth_root(n) ** k \\leq n
+    2. (kth_root(n) + 1) ** k > n
     
     Arguments:
         n {int} -- n
